@@ -1,80 +1,93 @@
 ---
 layout: page
-title: project 5
-description: a project with a background image
-img: assets/img/1.jpg
-importance: 3
-category: fun
+title: Loan Approval Prediction
+description: A machine learning project that predicts loan approval decisions using applicant data.
+img: assets/img/5.png
+importance: 5
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+**GitHub Repository:** [View on GitHub](https://github.com/itsAshna/Loan-approval-prediction)
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+#### 📖 Introduction
+This project focuses on predicting whether a loan application will be approved based on applicant demographic, financial, and credit history data. Loan approval prediction is a critical task for financial institutions, as it helps minimize default risk while ensuring eligible applicants are not overlooked. By leveraging machine learning, the process becomes faster, more consistent, and more data-driven.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+---
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+#### 🎯 Problem
+Financial institutions must evaluate loan applications efficiently while balancing risk and fairness. The main challenges include:
+- **Imbalanced datasets** – far more denied than approved applications.
+- **Mixed data types** – numerical, categorical, and binary variables.
+- **Precision–Recall trade-off** – balancing false approvals and false denials.
+- **Model interpretability** – avoiding bias in decision-making.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+---
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+#### 🛠 Approach
+##### 1. Data Preprocessing
+- Removed unrealistic outliers (e.g., employment length > 100 years).
+- Standardized numerical features for model stability.
+- Encoded categorical features using label encoding.
+- Applied **SMOTE** to address class imbalance.
+- Used **PCA** for dimensionality reduction (retained 95% variance).
 
-{% raw %}
+##### 2. Exploratory Data Analysis
+- Examined distributions and correlations between features.
+- Identified that **credit history length** and **loan percent income** are strong predictors.
+- Visualized approval trends by demographic and loan characteristics.
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+##### 3. Modeling
+Trained and evaluated multiple models:
+- Logistic Regression (baseline)
+- Random Forest (best balanced performance)
+- XGBoost (best minority class recall)
+- Neural Network (high recall with deep learning)
 
-{% endraw %}
+##### 4. Evaluation
+- Metrics: Accuracy, Precision, Recall, F1-score, ROC-AUC, Confusion Matrix.
+- Performed hyperparameter tuning for Random Forest and XGBoost.
+
+---
+
+#### 📊 Results
+
+| Model               | Accuracy | Recall (Class 1) | ROC-AUC |
+|---------------------|----------|------------------|---------|
+| Logistic Regression | 0.90     | 0.42             | 0.87    |
+| Random Forest       | 0.89     | 0.76             | 0.90    |
+| XGBoost             | 0.84     | 0.81             | 0.89    |
+| Neural Network      | 0.73     | 0.76             | 0.91    |
+
+
+- **Best Overall**: Random Forest – balanced accuracy and recall.  
+- **Best Minority Recall**: XGBoost & Neural Network.
+
+
+---
+
+#### 🚧 Challenges
+- Severe **class imbalance** reducing minority class recall.
+- Avoiding overfitting with a relatively small dataset.
+- Ensuring interpretability for decision-making transparency.
+
+---
+
+#### ✅ What I Solved
+- Built a complete preprocessing and modeling pipeline.
+- Improved minority class recall using **SMOTE** and hyperparameter tuning.
+- Used SHAP values for explainable AI, ensuring transparency in predictions.
+
+---
+
+#### 📌 Conclusion
+The project successfully developed a loan approval prediction model that balances accuracy and fairness. Random Forest emerged as the most reliable choice for production deployment, while XGBoost and Neural Networks offered stronger minority class recall when high-risk detection is prioritized.
+
+---
+
+#### 🔮 Future Improvements
+- Incorporating behavioral and transactional data for richer insights.
+- Deploying the model as a **web app** for real-time decision support.
+- Experimenting with ensemble stacking to improve accuracy.
+- Implementing bias detection and fairness checks across demographic groups.
+
+---

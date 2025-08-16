@@ -1,81 +1,80 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
-category: work
-giscus_comments: true
+title: NLP to SQL Queries
+description: Plain english to SQL queries to interact with database deployed on AWS using EKS.
+img: assets/img/1.png
+importance: 1
+---
+**GitHub Repository:** [View on GitHub](https://github.com/itsAshna/nlp-to-sql-queries)
+
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+#### Introduction
+This project demonstrates how to build and deploy a FastAPI application that translates natural language questions into SQL queries and runs them against a dataset hosted in Amazon Athena. The entire pipeline is containerized, stored in Amazon ECR, and deployed on an AWS EKS cluster, accessible via a public endpoint.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+---
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+#### Problem
+Data analysts and non-technical stakeholders often struggle to query data if they don’t know SQL. A natural language interface can bridge this gap, allowing anyone to get insights from data using plain English.
+ In this service, users can type a question in plain English (e.g., “Show me all products ordered in July”), and the system generates the corresponding SQL query, executes it against the database, and returns the results in a CSV file - all without touching SQL.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+---
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+#### Approach
+1. **Application Development**
+   - Built with **FastAPI** to handle HTTP requests.
+   - Integrated **OpenAI API** to translate natural language into SQL queries.
+   - Connected to **Amazon Athena** to execute SQL queries on S3-hosted data.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+2. **Containerization**
+   - Created a multi-architecture Docker image supporting **amd64** and **arm64**.
+   - Stored images in **Amazon ECR**.
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+3. **Continuous Integration & Deployment**
+   - Used **GitHub Actions** to automate:
+     - Building the Docker image.
+     - Pushing it to ECR.
+     - Deploying updates to EKS.
 
-{% raw %}
+4. **Infrastructure**
+   - Deployed on an **AWS EKS** cluster.
+   - Exposed via a LoadBalancer service to get a public URL.
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+---
 
-{% endraw %}
+#### Results
+- Successfully deployed a public API where users can send natural language questions and receive SQL results.
+- Achieved end-to-end automation from code commit to deployment.
+- Validated scalability on AWS infrastructure.
+
+---
+
+#### Challenges
+- **GitHub Actions not triggering** due to missing workflow events.
+- **Docker architecture mismatch** (built on ARM Mac, deployed on AMD AWS nodes).
+- **OpenAI API quota issues** causing runtime errors.
+- **Kubernetes CrashLoopBackOff** errors due to missing environment variables.
+- **Cost management** — keeping EKS running racks up charges quickly.
+
+---
+
+#### How I Solved
+- Added `on: push` triggers in GitHub Actions to automate builds.
+- Used `--platform linux/amd64` in Docker builds to match AWS node architecture.
+- Stored sensitive credentials (OpenAI API key, AWS creds) in GitHub Secrets and Kubernetes secrets.
+- Implemented cleanup scripts to delete EKS clusters, ECR repos, and S3 data to avoid extra costs.
+
+---
+
+#### Conclusion
+This project demonstrates the full lifecycle of deploying an NLP-to-SQL application in the cloud, from local development to production deployment on AWS. It also highlights the importance of CI/CD, cross-platform containerization, and cost management.
+
+---
+
+#### Future Improvements
+- Implement caching to reduce repeated OpenAI calls and save on API costs.
+- Add authentication and rate-limiting for the public API.
+- Expand support for multiple databases beyond Athena.
+- Enhance natural language processing for more complex queries.
+- Add monitoring and logging dashboards using AWS CloudWatch and Grafana.
+

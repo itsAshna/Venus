@@ -1,80 +1,78 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
+title: Alertron
+description: An anomaly detection system using Kafka, Prometheus, Grafana and Slack.
+img: assets/img/3.png
 importance: 3
-category: fun
+---
+**GitHub Repository:** [View on GitHub](https://github.com/itsAshna/Alertron)
+
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+#### Introduction
+I built a real-time anomaly-detection pipeline that ingests streaming IoT-style data, scores each event with an ML model, exports rich Prometheus metrics, raises automated Slack alerts when the fleet goes off‑nominal, and visualizes the system in Grafana. It’s a compact, hands‑on MLOps project that shows how to take a model from a notebook to a production‑like, observable service.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+#### Problem
+Detect anomalous device behavior across a fleet **as it happens**, not hours later. The system needed to:
+- handle a continuous stream of readings,
+- score each event with low latency,
+- expose **operational** metrics (throughput, latency, errors),
+- raise a **reliable alert** when anomaly volume spikes,
+- be easy to run locally and share.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
+#### Approach
+**Pipeline**
+```
+IoT generator → Kafka ("readings")
+                   ↓
+        FastAPI inference service (aiokafka)
+           • Isolation Forest scoring
+           • Severity via score quantiles (low/medium/high)
+           • Prometheus metrics (/metrics)
+                   ↓
+      Prometheus → Alert rules → Alertmanager → Slack
+                   ↓
+                        Grafana dashboards
 ```
 
-{% endraw %}
+**Key tech**
+- **Kafka (Redpanda)** for the stream (`readings`, optional `anomalies` topic).
+- **FastAPI** service scoring with **Isolation Forest** (scikit‑learn, joblib).
+- **Prometheus** metrics exposed by the service:  
+  `anomaly_count_total{device_id,severity}`, `last_anomaly_score{device_id}`,  
+  `inference_latency_seconds_bucket/_sum/_count`, `predictions_total`,  
+  `kafka_messages_consumed_total{topic}`, `kafka_errors_total`.
+- **Alerting:** Prometheus rule (e.g., `sum(increase(anomaly_count_total[5m])) > threshold`) → **Alertmanager** → **Slack** (app webhook).
+- **Grafana** dashboard for anomalies, throughput, p95 latency, Kafka error %, top devices, and last scores.
+- **Docker Compose** for one‑command up; a `topic-init` job ensures topics exist before consumers start.
+
+#### Results
+- **Throughput:** ~9–10 predictions/sec on my local run.
+- **Latency:** ~24–25 ms **p95** inference latency.
+- **Alerting:** `HighAnomalyRate` fires under sustained spikes and delivers to Slack.
+- **Reliability:** Kafka error % at **0.00%** during steady state.
+- **Observability:** Live panels for anomaly volume (5m), by‑severity trend, top noisy devices, and recent per‑device scores.
+
+#### Key Findings
+- **Observability from day 0** changes how you build ML services: latency histograms + rates make bottlenecks obvious.
+- **Severity needs calibration:** quantile‑based thresholds (e.g., p80/p95 of scores) give meaningful low/medium/high bands.
+- **Alert tuning matters:** use `increase()` over a window and sum across devices; start conservative to avoid Slack spam.
+- **Streaming > polling** for scale: Kafka decouples generation from scoring and handles backpressure cleanly.
+- **Infra gotchas:** correct Kafka advertised addresses and YAML indentation for Prometheus rules are common pitfalls—document them.
+
+#### What I Solved
+- Turned a notebook model into a **real‑time, observable microservice**.
+- Built an **end‑to‑end alerting loop** (metrics → rule → Slack) operators can trust.
+- Packaged everything with **Docker Compose** so anyone can reproduce the system in minutes.
+- Shipped a **Grafana dashboard** and PromQL library that make the service explainable to SREs and PMs, not just ML engineers.
+
+#### Conclusion
+This project demonstrates practical **MLOps readiness**: streaming ingestion, low‑latency inference, first‑class metrics, actionable alerts, and clear dashboards. It’s small enough to run locally yet architected like a production system—useful as a template for real deployments.
+
+#### Future Improvements
+- **Modeling:** windowed features, autoencoder baseline, concept‑drift detection, periodic retraining.
+- **Data/Contracts:** schema registry (Avro/Protobuf), input validation, dead‑letter topic.
+- **Ops:** CI/CD with unit + integration tests, canary deploys, blue/green for the service.
+- **Platform:** Kubernetes (Prometheus Operator, Alertmanager, Grafana provisioning), Helm charts.
+- **Observability+:** OpenTelemetry traces, SLOs + burn‑rate alerts, per‑device alert routing, on‑call runbooks.
+- **Security:** TLS between components, secret management, RBAC on dashboards.

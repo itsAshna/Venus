@@ -1,81 +1,47 @@
 ---
 layout: page
-title: project 3 with very long name
-description: a project that redirects to another website
-img: assets/img/7.jpg
-redirect: https://unsplash.com
-importance: 3
-category: work
+title: Modelling Human Attention
+description: A transformer-based system that predicts the most engaging moments in YouTube videos.
+img: assets/img/4.png
+importance: 2
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+#### Introduction
+*Modelling Human Attention* is a research project where I built a transformer-based system to predict which parts of a video are most engaging to viewers — using only the video transcripts. The idea was inspired by YouTube’s *Most Replayed* feature, which highlights moments people tend to watch again.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+#### Problem
+While replay peaks are a strong signal of engagement, they are only available after a video has been watched many times. This makes it impossible for creators, advertisers, or platforms to know which segments will be replayed before release. Additionally, replay data is often noisy — influenced by random skipping, incomplete transcripts, and differences in content style.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+#### Approach
+I designed a **peak-driven segmentation strategy** to split transcripts into meaningful chunks aligned with viewer attention patterns.
+- **Bias Correction** for inflated early peaks.
+- **Adaptive Thresholds** to detect both strong and subtle moments of engagement.
+- **Semantic Coherence** so each segment contains a complete, meaningful idea.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+These segments were processed using a transformer architecture that combined:
+- **Local Context** — the segment’s own text.
+- **Global Context** — video title and summary.
+- **Genre Embeddings** — to adapt to different video styles.
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+The model was trained with focal loss to handle class imbalance between “peak” and “non-peak” segments.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+#### Results
+- Achieved **high replay peak prediction accuracy** across multiple genres.
+- Sports and Technology content showed the strongest predictability.
+- The model performed well **even without replay data** at inference, using only transcript content.
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+#### Key Findings
+- Engagement cues are embedded in language patterns, especially in sports commentary and tech reviews.
+- Different genres have different optimal segmentation granularities.
+- Coarser segmentation works better for narrative-rich content; finer segmentation benefits structured educational content.
 
-{% raw %}
+#### What I Solved
+I created a method to **predict viewer engagement before a video is published**, using only its transcript. This solves the problem of needing post-release replay data and makes engagement prediction more accessible and scalable.
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+#### Conclusion
+By fusing textual, contextual, and genre-based features, this project demonstrates that viewer attention patterns can be modeled reliably without visual or audio cues. This opens possibilities for content optimization, targeted advertising, and personalized recommendations.
 
-{% endraw %}
+#### Future Improvements
+- Add **multimodal signals** (audio tone, visual motion) for richer engagement detection.
+- Develop an **adaptive segmentation algorithm** that automatically chooses segment size per content type.
+- Expand testing on short-form and multilingual content.
