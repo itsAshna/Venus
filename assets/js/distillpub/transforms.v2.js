@@ -24,7 +24,20 @@
   // limitations under the License.
 
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+  const months = [
+    "Jan.",
+    "Feb.",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "Aug.",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
   const zeroPad = (n) => (n < 10 ? "0" + n : n);
 
   const RFC = function (date) {
@@ -432,11 +445,13 @@
   }
 
   function unwrapExports(x) {
-    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
+    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default")
+      ? x["default"]
+      : x;
   }
 
   function createCommonjsModule(fn, module) {
-    return (module = { exports: {} }), fn(module, module.exports), module.exports;
+    return ((module = { exports: {} }), fn(module, module.exports), module.exports);
   }
 
   var bibtexParse = createCommonjsModule(function (module, exports) {
@@ -465,7 +480,20 @@
     //value_braces -> '{' .*? '"'; // not quite
     (function (exports) {
       function BibtexParser() {
-        this.months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        this.months = [
+          "jan",
+          "feb",
+          "mar",
+          "apr",
+          "may",
+          "jun",
+          "jul",
+          "aug",
+          "sep",
+          "oct",
+          "nov",
+          "dec",
+        ];
         this.notKey = [",", "{", "}", " ", "="];
         this.pos = 0;
         this.input = "";
@@ -865,7 +893,11 @@
           .map((s) => s.trim()[0]);
         initials = initials.join(".") + ".";
       }
-      return template.replace("${F}", firsts).replace("${L}", last).replace("${I}", initials).trim(); // in case one of first or last was empty
+      return template
+        .replace("${F}", firsts)
+        .replace("${L}", last)
+        .replace("${I}", initials)
+        .trim(); // in case one of first or last was empty
     });
     if (names.length > 1) {
       var str = name_strings.slice(0, names.length - 1).join(sep);
@@ -1261,7 +1293,10 @@
               if (typeof document !== "undefined") {
                 if (document.compatMode !== "CSS1Compat") {
                   typeof console !== "undefined" &&
-                    console.warn("Warning: KaTeX doesn't work in quirks mode. Make sure your " + "website has a suitable doctype.");
+                    console.warn(
+                      "Warning: KaTeX doesn't work in quirks mode. Make sure your " +
+                        "website has a suitable doctype."
+                    );
 
                   render = function render() {
                     throw new _ParseError2.default("KaTeX doesn't work in quirks mode.");
@@ -1491,7 +1526,11 @@
                   IS_WRAP = type & $export.W,
                   exports = IS_GLOBAL ? core : core[name] || (core[name] = {}),
                   expProto = exports[PROTOTYPE],
-                  target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE],
+                  target = IS_GLOBAL
+                    ? global
+                    : IS_STATIC
+                      ? global[name]
+                      : (global[name] || {})[PROTOTYPE],
                   key,
                   own,
                   out;
@@ -1650,7 +1689,8 @@
                       } catch (e) {
                         /* empty */
                       }
-                    if ("get" in Attributes || "set" in Attributes) throw TypeError("Accessors not supported!");
+                    if ("get" in Attributes || "set" in Attributes)
+                      throw TypeError("Accessors not supported!");
                     if ("value" in Attributes) O[P] = Attributes.value;
                     return O;
                   };
@@ -1684,9 +1724,12 @@
               module.exports = function (it, S) {
                 if (!isObject(it)) return it;
                 var fn, val;
-                if (S && typeof (fn = it.toString) == "function" && !isObject((val = fn.call(it)))) return val;
-                if (typeof (fn = it.valueOf) == "function" && !isObject((val = fn.call(it)))) return val;
-                if (!S && typeof (fn = it.toString) == "function" && !isObject((val = fn.call(it)))) return val;
+                if (S && typeof (fn = it.toString) == "function" && !isObject((val = fn.call(it))))
+                  return val;
+                if (typeof (fn = it.valueOf) == "function" && !isObject((val = fn.call(it))))
+                  return val;
+                if (!S && typeof (fn = it.toString) == "function" && !isObject((val = fn.call(it))))
+                  return val;
                 throw TypeError("Can't convert object to primitive value");
               };
             },
@@ -1696,7 +1739,9 @@
             function (require, module, exports) {
               var $export = require("./_export");
               // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-              $export($export.S + $export.F * !require("./_descriptors"), "Object", { defineProperty: require("./_object-dp").f });
+              $export($export.S + $export.F * !require("./_descriptors"), "Object", {
+                defineProperty: require("./_object-dp").f,
+              });
             },
             {
               "./_descriptors": 12,
@@ -1715,7 +1760,11 @@
                   var source = re.source + "|()";
 
                   // We always make the new regex global.
-                  var flags = "g" + (re.ignoreCase ? "i" : "") + (re.multiline ? "m" : "") + (re.unicode ? "u" : "");
+                  var flags =
+                    "g" +
+                    (re.ignoreCase ? "i" : "") +
+                    (re.multiline ? "m" : "") +
+                    (re.unicode ? "u" : "");
                   // sticky (/.../y) doesn't make sense in conjunction with our relocation
                   // logic, so we ignore it here.
                   re.__matchAtRelocatable = new RegExp(source, flags);
@@ -1970,7 +2019,10 @@
                       }
                       var match = (0, _matchAt2.default)(tokenRegex, input, pos);
                       if (match === null) {
-                        throw new _ParseError2.default("Unexpected character: '" + input[pos] + "'", new Token(input[pos], pos, pos + 1, this));
+                        throw new _ParseError2.default(
+                          "Unexpected character: '" + input[pos] + "'",
+                          new Token(input[pos], pos, pos + 1, this)
+                        );
                       }
                       var text = match[2] || " ";
                       var start = this.pos;
@@ -2096,14 +2148,20 @@
                                 } else if (tok.text === "}") {
                                   --depth;
                                 } else if (tok.text === "EOF") {
-                                  throw new _ParseError2.default("End of input in macro argument", startOfArg);
+                                  throw new _ParseError2.default(
+                                    "End of input in macro argument",
+                                    startOfArg
+                                  );
                                 }
                               }
                               arg.pop(); // remove last }
                               arg.reverse(); // like above, to fit in with stack order
                               args[i] = arg;
                             } else if (startOfArg.text === "EOF") {
-                              throw new _ParseError2.default("End of input expecting macro argument", topToken);
+                              throw new _ParseError2.default(
+                                "End of input expecting macro argument",
+                                topToken
+                              );
                             } else {
                               args[i] = [startOfArg];
                             }
@@ -2114,7 +2172,10 @@
                             tok = expansion[i];
                             if (tok.text === "#") {
                               if (i === 0) {
-                                throw new _ParseError2.default("Incomplete placeholder at end of macro body", tok);
+                                throw new _ParseError2.default(
+                                  "Incomplete placeholder at end of macro body",
+                                  tok
+                                );
                               }
                               tok = expansion[--i]; // next token on stack
                               if (tok.text === "#") {
@@ -2124,7 +2185,10 @@
                                 // expansion.splice(i, 2, arg[0], arg[1], …)
                                 // to replace placeholder with the indicated argument.
                                 // TODO: use spread once we move to ES2015
-                                expansion.splice.apply(expansion, [i, 2].concat(args[tok.text - 1]));
+                                expansion.splice.apply(
+                                  expansion,
+                                  [i, 2].concat(args[tok.text - 1])
+                                );
                               } else {
                                 throw new _ParseError2.default("Not a valid argument number", tok);
                               }
@@ -2339,7 +2403,11 @@
                     value: function havingBaseStyle(style) {
                       style = style || this.style.text();
                       var wantSize = sizeAtStyle(BASESIZE, style);
-                      if (this.size === wantSize && this.textSize === BASESIZE && this.style === style) {
+                      if (
+                        this.size === wantSize &&
+                        this.textSize === BASESIZE &&
+                        this.style === style
+                      ) {
                         return this;
                       } else {
                         return this.extend({
@@ -2777,7 +2845,10 @@
                     key: "expect",
                     value: function expect(text, consume) {
                       if (this.nextToken.text !== text) {
-                        throw new _ParseError2.default("Expected '" + text + "', got '" + this.nextToken.text + "'", this.nextToken);
+                        throw new _ParseError2.default(
+                          "Expected '" + text + "', got '" + this.nextToken.text + "'",
+                          this.nextToken
+                        );
                       }
                       if (consume !== false) {
                         this.consume();
@@ -2861,7 +2932,11 @@
                         if (breakOnTokenText && lex.text === breakOnTokenText) {
                           break;
                         }
-                        if (breakOnInfix && _functions2.default[lex.text] && _functions2.default[lex.text].infix) {
+                        if (
+                          breakOnInfix &&
+                          _functions2.default[lex.text] &&
+                          _functions2.default[lex.text].infix
+                        ) {
                           break;
                         }
                         var atom = this.parseAtom();
@@ -2899,7 +2974,10 @@
                         var node = body[i];
                         if (node.type === "infix") {
                           if (overIndex !== -1) {
-                            throw new _ParseError2.default("only one infix operator per group", node.value.token);
+                            throw new _ParseError2.default(
+                              "only one infix operator per group",
+                              node.value.token
+                            );
                           }
                           overIndex = i;
                           funcName = node.value.replaceWith;
@@ -2950,7 +3028,10 @@
                         if (!this.settings.throwOnError && this.nextToken.text[0] === "\\") {
                           return this.handleUnsupportedCmd();
                         } else {
-                          throw new _ParseError2.default("Expected group after '" + symbol + "'", symbolToken);
+                          throw new _ParseError2.default(
+                            "Expected group after '" + symbol + "'",
+                            symbolToken
+                          );
                         }
                       } else if (group.isFunction) {
                         // ^ and _ have a greediness, so handle interactions with functions'
@@ -2959,7 +3040,10 @@
                         if (funcGreediness > Parser.SUPSUB_GREEDINESS) {
                           return this.parseFunction(group);
                         } else {
-                          throw new _ParseError2.default("Got function '" + group.result + "' with no arguments " + "as " + name, symbolToken);
+                          throw new _ParseError2.default(
+                            "Got function '" + group.result + "' with no arguments " + "as " + name,
+                            symbolToken
+                          );
                         }
                       } else {
                         return group.result;
@@ -3033,7 +3117,10 @@
                         if (lex.text === "\\limits" || lex.text === "\\nolimits") {
                           // We got a limit control
                           if (!base || base.type !== "op") {
-                            throw new _ParseError2.default("Limit controls must follow a math operator", lex);
+                            throw new _ParseError2.default(
+                              "Limit controls must follow a math operator",
+                              lex
+                            );
                           } else {
                             var limits = lex.text === "\\limits";
                             base.value.limits = limits;
@@ -3153,7 +3240,10 @@
                         var begin = this.parseFunction(start);
                         var envName = begin.value.name;
                         if (!_environments2.default.hasOwnProperty(envName)) {
-                          throw new _ParseError2.default("No such environment: " + envName, begin.value.nameGroup);
+                          throw new _ParseError2.default(
+                            "No such environment: " + envName,
+                            begin.value.nameGroup
+                          );
                         }
                         // Build the environment object. Arguments and other information will
                         // be made available to the begin and end methods using properties.
@@ -3171,7 +3261,12 @@
                         var end = this.parseFunction();
                         if (end.value.name !== envName) {
                           throw new _ParseError2.default(
-                            "Mismatch: \\begin{" + envName + "} matched " + "by \\end{" + end.value.name + "}",
+                            "Mismatch: \\begin{" +
+                              envName +
+                              "} matched " +
+                              "by \\end{" +
+                              end.value.name +
+                              "}",
                             endNameToken
                           );
                         }
@@ -3289,9 +3384,15 @@
                           var func = baseGroup.result;
                           var funcData = _functions2.default[func];
                           if (this.mode === "text" && !funcData.allowedInText) {
-                            throw new _ParseError2.default("Can't use function '" + func + "' in text mode", baseGroup.token);
+                            throw new _ParseError2.default(
+                              "Can't use function '" + func + "' in text mode",
+                              baseGroup.token
+                            );
                           } else if (this.mode === "math" && funcData.allowedInMath === false) {
-                            throw new _ParseError2.default("Can't use function '" + func + "' in math mode", baseGroup.token);
+                            throw new _ParseError2.default(
+                              "Can't use function '" + func + "' in math mode",
+                              baseGroup.token
+                            );
                           }
 
                           var args = this.parseArguments(func, funcData);
@@ -3365,9 +3466,15 @@
                           }
                           if (!arg) {
                             if (!this.settings.throwOnError && this.nextToken.text[0] === "\\") {
-                              arg = new ParseFuncOrArgument(this.handleUnsupportedCmd(this.nextToken.text), false);
+                              arg = new ParseFuncOrArgument(
+                                this.handleUnsupportedCmd(this.nextToken.text),
+                                false
+                              );
                             } else {
-                              throw new _ParseError2.default("Expected group after '" + func + "'", nextToken);
+                              throw new _ParseError2.default(
+                                "Expected group after '" + func + "'",
+                                nextToken
+                              );
                             }
                           }
                         }
@@ -3377,7 +3484,15 @@
                           if (argGreediness > baseGreediness) {
                             argNode = this.parseFunction(arg);
                           } else {
-                            throw new _ParseError2.default("Got function '" + arg.result + "' as " + "argument to '" + func + "'", nextToken);
+                            throw new _ParseError2.default(
+                              "Got function '" +
+                                arg.result +
+                                "' as " +
+                                "argument to '" +
+                                func +
+                                "'",
+                              nextToken
+                            );
                           }
                         } else {
                           argNode = arg.result;
@@ -3456,7 +3571,10 @@
                       var lastToken = firstToken;
                       while (this.nextToken.text !== (optional ? "]" : "}")) {
                         if (this.nextToken.text === "EOF") {
-                          throw new _ParseError2.default("Unexpected end of input in " + modeName, firstToken.range(this.nextToken, str));
+                          throw new _ParseError2.default(
+                            "Unexpected end of input in " + modeName,
+                            firstToken.range(this.nextToken, str)
+                          );
                         }
                         lastToken = this.nextToken;
                         str += lastToken.text;
@@ -3484,13 +3602,19 @@
                       var firstToken = this.nextToken;
                       var lastToken = firstToken;
                       var str = "";
-                      while (this.nextToken.text !== "EOF" && regex.test(str + this.nextToken.text)) {
+                      while (
+                        this.nextToken.text !== "EOF" &&
+                        regex.test(str + this.nextToken.text)
+                      ) {
                         lastToken = this.nextToken;
                         str += lastToken.text;
                         this.consume();
                       }
                       if (str === "") {
-                        throw new _ParseError2.default("Invalid " + modeName + ": '" + firstToken.text + "'", firstToken);
+                        throw new _ParseError2.default(
+                          "Invalid " + modeName + ": '" + firstToken.text + "'",
+                          firstToken
+                        );
                       }
                       this.mode = outerMode;
                       return firstToken.range(lastToken, str);
@@ -3511,7 +3635,10 @@
                       if (!match) {
                         throw new _ParseError2.default("Invalid color: '" + res.text + "'", res);
                       }
-                      return new ParseFuncOrArgument(new _ParseNode2.default("color", match[0], this.mode), false);
+                      return new ParseFuncOrArgument(
+                        new _ParseNode2.default("color", match[0], this.mode),
+                        false
+                      );
                     },
 
                     /**
@@ -3523,7 +3650,10 @@
                     value: function parseSizeGroup(optional) {
                       var res = void 0;
                       if (!optional && this.nextToken.text !== "{") {
-                        res = this.parseRegexGroup(/^[-+]? *(?:$|\d+|\d+\.\d*|\.\d*) *[a-z]{0,2} *$/, "size");
+                        res = this.parseRegexGroup(
+                          /^[-+]? *(?:$|\d+|\d+\.\d*|\.\d*) *[a-z]{0,2} *$/,
+                          "size"
+                        );
                       } else {
                         res = this.parseStringGroup("size", optional);
                       }
@@ -3541,7 +3671,10 @@
                       if (!_units2.default.validUnit(data)) {
                         throw new _ParseError2.default("Invalid unit: '" + data.unit + "'", res);
                       }
-                      return new ParseFuncOrArgument(new _ParseNode2.default("size", data, this.mode), false);
+                      return new ParseFuncOrArgument(
+                        new _ParseNode2.default("size", data, this.mode),
+                        false
+                      );
                     },
 
                     /**
@@ -3571,7 +3704,16 @@
                         if (this.mode === "text") {
                           this.formLigatures(expression);
                         }
-                        return new ParseFuncOrArgument(new _ParseNode2.default("ordgroup", expression, this.mode, firstToken, lastToken), false);
+                        return new ParseFuncOrArgument(
+                          new _ParseNode2.default(
+                            "ordgroup",
+                            expression,
+                            this.mode,
+                            firstToken,
+                            lastToken
+                          ),
+                          false
+                        );
                       } else {
                         // Otherwise, just return a nucleus, or nothing for an optional group
                         return optional ? null : this.parseSymbol();
@@ -3598,15 +3740,27 @@
                         var v = a.value;
                         if (v === "-" && group[i + 1].value === "-") {
                           if (i + 1 < n && group[i + 2].value === "-") {
-                            group.splice(i, 3, new _ParseNode2.default("textord", "---", "text", a, group[i + 2]));
+                            group.splice(
+                              i,
+                              3,
+                              new _ParseNode2.default("textord", "---", "text", a, group[i + 2])
+                            );
                             n -= 2;
                           } else {
-                            group.splice(i, 2, new _ParseNode2.default("textord", "--", "text", a, group[i + 1]));
+                            group.splice(
+                              i,
+                              2,
+                              new _ParseNode2.default("textord", "--", "text", a, group[i + 1])
+                            );
                             n -= 1;
                           }
                         }
                         if ((v === "'" || v === "`") && group[i + 1].value === v) {
-                          group.splice(i, 2, new _ParseNode2.default("textord", v + v, "text", a, group[i + 1]));
+                          group.splice(
+                            i,
+                            2,
+                            new _ParseNode2.default("textord", v + v, "text", a, group[i + 1])
+                          );
                           n -= 1;
                         }
                       }
@@ -3634,13 +3788,25 @@
                         // Otherwise if this is a no-argument function, find the type it
                         // corresponds to in the symbols map
                         return new ParseFuncOrArgument(
-                          new _ParseNode2.default(_symbols2.default[this.mode][nucleus.text].group, nucleus.text, this.mode, nucleus),
+                          new _ParseNode2.default(
+                            _symbols2.default[this.mode][nucleus.text].group,
+                            nucleus.text,
+                            this.mode,
+                            nucleus
+                          ),
                           false,
                           nucleus
                         );
-                      } else if (this.mode === "text" && _unicodeRegexes.cjkRegex.test(nucleus.text)) {
+                      } else if (
+                        this.mode === "text" &&
+                        _unicodeRegexes.cjkRegex.test(nucleus.text)
+                      ) {
                         this.consume();
-                        return new ParseFuncOrArgument(new _ParseNode2.default("textord", nucleus.text, this.mode, nucleus), false, nucleus);
+                        return new ParseFuncOrArgument(
+                          new _ParseNode2.default("textord", nucleus.text, this.mode, nucleus),
+                          false,
+                          nucleus
+                        );
                       } else if (nucleus.text === "$") {
                         return new ParseFuncOrArgument(nucleus.text, false, nucleus);
                       } else {
@@ -3667,7 +3833,12 @@
                 "\\huge",
                 "\\Huge",
               ];
-              Parser.styleFuncs = ["\\displaystyle", "\\textstyle", "\\scriptstyle", "\\scriptscriptstyle"];
+              Parser.styleFuncs = [
+                "\\displaystyle",
+                "\\textstyle",
+                "\\scriptstyle",
+                "\\scriptscriptstyle",
+              ];
               Parser.oldFontFuncs = {
                 "\\rm": "mathrm",
                 "\\sf": "mathsf",
@@ -3968,10 +4139,20 @@
                   if (mode === "text") {
                     italic = 0;
                   }
-                  symbolNode = new _domTree2.default.symbolNode(value, metrics.height, metrics.depth, italic, metrics.skew, classes);
+                  symbolNode = new _domTree2.default.symbolNode(
+                    value,
+                    metrics.height,
+                    metrics.depth,
+                    italic,
+                    metrics.skew,
+                    classes
+                  );
                 } else {
                   // TODO(emily): Figure out a good way to only print this in development
-                  typeof console !== "undefined" && console.warn("No character metrics for '" + value + "' in style '" + fontFamily + "'");
+                  typeof console !== "undefined" &&
+                    console.warn(
+                      "No character metrics for '" + value + "' in style '" + fontFamily + "'"
+                    );
                   symbolNode = new _domTree2.default.symbolNode(value, 0, 0, 0, 0, classes);
                 }
 
@@ -4012,14 +4193,32 @@
               var mathDefault = function mathDefault(value, mode, options, classes, type) {
                 if (type === "mathord") {
                   var fontLookup = mathit(value);
-                  return makeSymbol(value, fontLookup.fontName, mode, options, classes.concat([fontLookup.fontClass]));
+                  return makeSymbol(
+                    value,
+                    fontLookup.fontName,
+                    mode,
+                    options,
+                    classes.concat([fontLookup.fontClass])
+                  );
                 } else if (type === "textord") {
                   var font = _symbols2.default[mode][value] && _symbols2.default[mode][value].font;
                   if (font === "ams") {
-                    return makeSymbol(value, "AMS-Regular", mode, options, classes.concat(["amsrm"]));
+                    return makeSymbol(
+                      value,
+                      "AMS-Regular",
+                      mode,
+                      options,
+                      classes.concat(["amsrm"])
+                    );
                   } else {
                     // if (font === "main") {
-                    return makeSymbol(value, "Main-Regular", mode, options, classes.concat(["mathrm"]));
+                    return makeSymbol(
+                      value,
+                      "Main-Regular",
+                      mode,
+                      options,
+                      classes.concat(["mathrm"])
+                    );
                   }
                 } else {
                   throw new Error("unexpected type: " + type + " in mathDefault");
@@ -4069,7 +4268,13 @@
                     fontLookup = fontMap[font];
                   }
                   if (lookupSymbol(value, fontLookup.fontName, mode).metrics) {
-                    return makeSymbol(value, fontLookup.fontName, mode, options, classes.concat([fontLookup.fontClass || font]));
+                    return makeSymbol(
+                      value,
+                      fontLookup.fontName,
+                      mode,
+                      options,
+                      classes.concat([fontLookup.fontClass || font])
+                    );
                   } else {
                     return mathDefault(value, mode, options, classes, type);
                   }
@@ -4196,7 +4401,8 @@
                   currPos = depth;
                   for (i = 1; i < oldChildren.length; i++) {
                     var diff = -oldChildren[i].shift - currPos - oldChildren[i].elem.depth;
-                    var size = diff - (oldChildren[i - 1].elem.height + oldChildren[i - 1].elem.depth);
+                    var size =
+                      diff - (oldChildren[i - 1].elem.height + oldChildren[i - 1].elem.depth);
 
                     currPos = currPos + diff;
 
@@ -4287,9 +4493,15 @@
 
                   // Safari wants the first row to have inline content; otherwise it
                   // puts the bottom of the *second* row on the baseline.
-                  var topStrut = makeSpan(["vlist-s"], [new _domTree2.default.symbolNode("\u200B")]);
+                  var topStrut = makeSpan(
+                    ["vlist-s"],
+                    [new _domTree2.default.symbolNode("\u200B")]
+                  );
 
-                  rows = [makeSpan(["vlist-r"], [vlist, topStrut]), makeSpan(["vlist-r"], [depthStrut])];
+                  rows = [
+                    makeSpan(["vlist-r"], [vlist, topStrut]),
+                    makeSpan(["vlist-r"], [depthStrut]),
+                  ];
                 } else {
                   rows = [makeSpan(["vlist-r"], [vlist])];
                 }
@@ -4473,7 +4685,10 @@
                 // of its `classes` array. A later cleanup should ensure this, for
                 // instance by changing the signature of `makeSpan`.
                 if (node) {
-                  return _utils2.default.contains(["mbin", "mopen", "mrel", "mop", "mpunct"], node.classes[0]);
+                  return _utils2.default.contains(
+                    ["mbin", "mopen", "mrel", "mop", "mpunct"],
+                    node.classes[0]
+                  );
                 } else {
                   return isRealGroup;
                 }
@@ -4536,7 +4751,9 @@
                     if (_i < groups.length) {
                       // If there is a following group, move space within it.
                       if (groups[_i] instanceof _domTree2.default.symbolNode) {
-                        groups[_i] = (0, _buildCommon.makeSpan)([].concat(groups[_i].classes), [groups[_i]]);
+                        groups[_i] = (0, _buildCommon.makeSpan)([].concat(groups[_i].classes), [
+                          groups[_i],
+                        ]);
                       }
                       _buildCommon2.default.prependChildren(groups[_i], spaces);
                     } else {
@@ -4549,7 +4766,11 @@
 
                 // Binary operators change to ordinary symbols in some contexts.
                 for (var _i2 = 0; _i2 < groups.length; _i2++) {
-                  if (isBin(groups[_i2]) && (isBinLeftCanceller(groups[_i2 - 1], isRealGroup) || isBinRightCanceller(groups[_i2 + 1], isRealGroup))) {
+                  if (
+                    isBin(groups[_i2]) &&
+                    (isBinLeftCanceller(groups[_i2 - 1], isRealGroup) ||
+                      isBinRightCanceller(groups[_i2 + 1], isRealGroup))
+                  ) {
                     groups[_i2].classes[0] = "mord";
                   }
                 }
@@ -4598,7 +4819,12 @@
                     return getTypeOfDomTree(node.children[node.children.length - 1]);
                   }
                 } else {
-                  if (_utils2.default.contains(["mord", "mop", "mbin", "mrel", "mopen", "mclose", "mpunct", "minner"], node.classes[0])) {
+                  if (
+                    _utils2.default.contains(
+                      ["mord", "mop", "mbin", "mrel", "mopen", "mclose", "mpunct", "minner"],
+                      node.classes[0]
+                    )
+                  ) {
                     return node.classes[0];
                   }
                 }
@@ -4619,7 +4845,11 @@
                   if (base.type === "op") {
                     // Operators handle supsubs differently when they have limits
                     // (e.g. `\displaystyle\sum_2^3`)
-                    return base.value.limits && (options.style.size === _Style2.default.DISPLAY.size || base.value.alwaysHandleSupSub);
+                    return (
+                      base.value.limits &&
+                      (options.style.size === _Style2.default.DISPLAY.size ||
+                        base.value.alwaysHandleSupSub)
+                    );
                   } else if (base.type === "accent") {
                     return isCharacterBox(base.value.base);
                   } else if (base.type === "horizBrace") {
@@ -4723,7 +4953,11 @@
               };
 
               groupTypes.ordgroup = function (group, options) {
-                return (0, _buildCommon.makeSpan)(["mord"], buildExpression(group.value, options, true), options);
+                return (0, _buildCommon.makeSpan)(
+                  ["mord"],
+                  buildExpression(group.value, options, true),
+                  options
+                );
               };
 
               groupTypes.text = function (group, options) {
@@ -4739,7 +4973,11 @@
               };
 
               groupTypes.color = function (group, options) {
-                var elements = buildExpression(group.value.value, options.withColor(group.value.color), false);
+                var elements = buildExpression(
+                  group.value.value,
+                  options.withColor(group.value.color),
+                  false
+                );
 
                 // \color isn't supposed to affect the type of the elements it contains.
                 // To accomplish this, we wrap the results in a fragment, so the inner
@@ -4773,7 +5011,10 @@
                   newOptions = options.havingStyle(options.style.sup());
                   supm = buildGroup(group.value.sup, newOptions, options);
                   if (!isCharacterBox(group.value.base)) {
-                    supShift = base.height - (newOptions.fontMetrics().supDrop * newOptions.sizeMultiplier) / options.sizeMultiplier;
+                    supShift =
+                      base.height -
+                      (newOptions.fontMetrics().supDrop * newOptions.sizeMultiplier) /
+                        options.sizeMultiplier;
                   }
                 }
 
@@ -4781,7 +5022,10 @@
                   newOptions = options.havingStyle(options.style.sub());
                   subm = buildGroup(group.value.sub, newOptions, options);
                   if (!isCharacterBox(group.value.base)) {
-                    subShift = base.depth + (newOptions.fontMetrics().subDrop * newOptions.sizeMultiplier) / options.sizeMultiplier;
+                    subShift =
+                      base.depth +
+                      (newOptions.fontMetrics().subDrop * newOptions.sizeMultiplier) /
+                        options.sizeMultiplier;
                   }
                 }
 
@@ -4871,12 +5115,21 @@
                     _vlistElem[0].marginLeft = -base.italic + "em";
                   }
 
-                  supsub = _buildCommon2.default.makeVList(_vlistElem, "individualShift", null, options);
+                  supsub = _buildCommon2.default.makeVList(
+                    _vlistElem,
+                    "individualShift",
+                    null,
+                    options
+                  );
                 }
 
                 // We ensure to wrap the supsub vlist in a span.msupsub to reset text-align
                 var mclass = getTypeOfDomTree(base) || "mord";
-                return (0, _buildCommon.makeSpan)([mclass], [base, (0, _buildCommon.makeSpan)(["msupsub"], [supsub])], options);
+                return (0, _buildCommon.makeSpan)(
+                  [mclass],
+                  [base, (0, _buildCommon.makeSpan)(["msupsub"], [supsub])],
+                  options
+                );
               };
 
               groupTypes.genfrac = function (group, options) {
@@ -4967,11 +5220,13 @@
                   var axisHeight = options.fontMetrics().axisHeight;
 
                   if (numShift - numerm.depth - (axisHeight + 0.5 * ruleWidth) < clearance) {
-                    numShift += clearance - (numShift - numerm.depth - (axisHeight + 0.5 * ruleWidth));
+                    numShift +=
+                      clearance - (numShift - numerm.depth - (axisHeight + 0.5 * ruleWidth));
                   }
 
                   if (axisHeight - 0.5 * ruleWidth - (denomm.height - denomShift) < clearance) {
-                    denomShift += clearance - (axisHeight - 0.5 * ruleWidth - (denomm.height - denomShift));
+                    denomShift +=
+                      clearance - (axisHeight - 0.5 * ruleWidth - (denomm.height - denomShift));
                   }
 
                   var midShift = -(axisHeight - 0.5 * ruleWidth);
@@ -5019,16 +5274,26 @@
                 if (group.value.leftDelim == null) {
                   leftDelim = makeNullDelimiter(options, ["mopen"]);
                 } else {
-                  leftDelim = _delimiter2.default.customSizedDelim(group.value.leftDelim, delimSize, true, options.havingStyle(style), group.mode, [
-                    "mopen",
-                  ]);
+                  leftDelim = _delimiter2.default.customSizedDelim(
+                    group.value.leftDelim,
+                    delimSize,
+                    true,
+                    options.havingStyle(style),
+                    group.mode,
+                    ["mopen"]
+                  );
                 }
                 if (group.value.rightDelim == null) {
                   rightDelim = makeNullDelimiter(options, ["mclose"]);
                 } else {
-                  rightDelim = _delimiter2.default.customSizedDelim(group.value.rightDelim, delimSize, true, options.havingStyle(style), group.mode, [
-                    "mclose",
-                  ]);
+                  rightDelim = _delimiter2.default.customSizedDelim(
+                    group.value.rightDelim,
+                    delimSize,
+                    true,
+                    options.havingStyle(style),
+                    group.mode,
+                    ["mclose"]
+                  );
                 }
 
                 return (0, _buildCommon.makeSpan)(
@@ -5141,7 +5406,9 @@
 
                       cols.push(separator);
                     } else {
-                      throw new _ParseError2.default("Invalid separator type: " + colDescr.separator);
+                      throw new _ParseError2.default(
+                        "Invalid separator type: " + colDescr.separator
+                      );
                     }
 
                     colDescrNum++;
@@ -5198,30 +5465,49 @@
               };
 
               groupTypes.spacing = function (group, options) {
-                if (group.value === "\\ " || group.value === "\\space" || group.value === " " || group.value === "~") {
+                if (
+                  group.value === "\\ " ||
+                  group.value === "\\space" ||
+                  group.value === " " ||
+                  group.value === "~"
+                ) {
                   // Spaces are generated by adding an actual space. Each of these
                   // things has an entry in the symbols table, so these will be turned
                   // into appropriate outputs.
                   if (group.mode === "text") {
                     return _buildCommon2.default.makeOrd(group, options, "textord");
                   } else {
-                    return (0, _buildCommon.makeSpan)(["mspace"], [_buildCommon2.default.mathsym(group.value, group.mode, options)], options);
+                    return (0, _buildCommon.makeSpan)(
+                      ["mspace"],
+                      [_buildCommon2.default.mathsym(group.value, group.mode, options)],
+                      options
+                    );
                   }
                 } else {
                   // Other kinds of spaces are of arbitrary width. We use CSS to
                   // generate these.
-                  return (0, _buildCommon.makeSpan)(["mspace", _buildCommon2.default.spacingFunctions[group.value].className], [], options);
+                  return (0, _buildCommon.makeSpan)(
+                    ["mspace", _buildCommon2.default.spacingFunctions[group.value].className],
+                    [],
+                    options
+                  );
                 }
               };
 
               groupTypes.llap = function (group, options) {
-                var inner = (0, _buildCommon.makeSpan)(["inner"], [buildGroup(group.value.body, options)]);
+                var inner = (0, _buildCommon.makeSpan)(
+                  ["inner"],
+                  [buildGroup(group.value.body, options)]
+                );
                 var fix = (0, _buildCommon.makeSpan)(["fix"], []);
                 return (0, _buildCommon.makeSpan)(["mord", "llap"], [inner, fix], options);
               };
 
               groupTypes.rlap = function (group, options) {
-                var inner = (0, _buildCommon.makeSpan)(["inner"], [buildGroup(group.value.body, options)]);
+                var inner = (0, _buildCommon.makeSpan)(
+                  ["inner"],
+                  [buildGroup(group.value.body, options)]
+                );
                 var fix = (0, _buildCommon.makeSpan)(["fix"], []);
                 return (0, _buildCommon.makeSpan)(["mord", "rlap"], [inner, fix], options);
               };
@@ -5247,7 +5533,11 @@
                 var noSuccessor = ["\\smallint"];
 
                 var large = false;
-                if (style.size === _Style2.default.DISPLAY.size && group.value.symbol && !_utils2.default.contains(noSuccessor, group.value.body)) {
+                if (
+                  style.size === _Style2.default.DISPLAY.size &&
+                  group.value.symbol &&
+                  !_utils2.default.contains(noSuccessor, group.value.body)
+                ) {
                   // Most symbol operators get larger in displaystyle (rule 13)
                   large = true;
                 }
@@ -5256,11 +5546,13 @@
                 if (group.value.symbol) {
                   // If this is a symbol, create the symbol.
                   var fontName = large ? "Size2-Regular" : "Size1-Regular";
-                  base = _buildCommon2.default.makeSymbol(group.value.body, fontName, "math", options, [
-                    "mop",
-                    "op-symbol",
-                    large ? "large-op" : "small-op",
-                  ]);
+                  base = _buildCommon2.default.makeSymbol(
+                    group.value.body,
+                    fontName,
+                    "math",
+                    options,
+                    ["mop", "op-symbol", large ? "large-op" : "small-op"]
+                  );
                 } else if (group.value.value) {
                   // If this is a list, compose that list.
                   var inner = buildExpression(group.value.value, options, true);
@@ -5313,14 +5605,20 @@
                     newOptions = options.havingStyle(style.sup());
                     supm = buildGroup(supGroup, newOptions, options);
 
-                    supKern = Math.max(options.fontMetrics().bigOpSpacing1, options.fontMetrics().bigOpSpacing3 - supm.depth);
+                    supKern = Math.max(
+                      options.fontMetrics().bigOpSpacing1,
+                      options.fontMetrics().bigOpSpacing3 - supm.depth
+                    );
                   }
 
                   if (subGroup) {
                     newOptions = options.havingStyle(style.sub());
                     subm = buildGroup(subGroup, newOptions, options);
 
-                    subKern = Math.max(options.fontMetrics().bigOpSpacing2, options.fontMetrics().bigOpSpacing4 - subm.height);
+                    subKern = Math.max(
+                      options.fontMetrics().bigOpSpacing2,
+                      options.fontMetrics().bigOpSpacing4 - subm.height
+                    );
                   }
 
                   // Build the final group as a vlist of the possible subscript, base,
@@ -5392,7 +5690,13 @@
                     // subscript) but be safe.
                     return base;
                   } else {
-                    bottom = options.fontMetrics().bigOpSpacing5 + subm.height + subm.depth + subKern + base.depth + baseShift;
+                    bottom =
+                      options.fontMetrics().bigOpSpacing5 +
+                      subm.height +
+                      subm.depth +
+                      subKern +
+                      base.depth +
+                      baseShift;
 
                     finalGroup = _buildCommon2.default.makeVList(
                       [
@@ -5450,7 +5754,9 @@
                 if (group.value.modType === "bmod") {
                   // “\nonscript\mskip-\medmuskip\mkern5mu”
                   if (!options.style.isTight()) {
-                    inner.push((0, _buildCommon.makeSpan)(["mspace", "negativemediumspace"], [], options));
+                    inner.push(
+                      (0, _buildCommon.makeSpan)(["mspace", "negativemediumspace"], [], options)
+                    );
                   }
                   inner.push((0, _buildCommon.makeSpan)(["mspace", "thickspace"], [], options));
                 } else if (options.style.size === _Style2.default.DISPLAY.size) {
@@ -5476,7 +5782,9 @@
                     // “\mkern5mu\nonscript\mskip-\medmuskip”
                     inner.push((0, _buildCommon.makeSpan)(["mspace", "thickspace"], [], options));
                     if (!options.style.isTight()) {
-                      inner.push((0, _buildCommon.makeSpan)(["mspace", "negativemediumspace"], [], options));
+                      inner.push(
+                        (0, _buildCommon.makeSpan)(["mspace", "negativemediumspace"], [], options)
+                      );
                     }
                   } else {
                     Array.prototype.push.apply(inner, modInner);
@@ -5485,7 +5793,10 @@
                 }
 
                 if (group.value.value) {
-                  Array.prototype.push.apply(inner, buildExpression(group.value.value, options, false));
+                  Array.prototype.push.apply(
+                    inner,
+                    buildExpression(group.value.value, options, false)
+                  );
                 }
 
                 if (group.value.modType === "pod" || group.value.modType === "pmod") {
@@ -5499,19 +5810,39 @@
                 // The KaTeX logo. The offsets for the K and a were chosen to look
                 // good, but the offsets for the T, E, and X were taken from the
                 // definition of \TeX in TeX (see TeXbook pg. 356)
-                var k = (0, _buildCommon.makeSpan)(["k"], [_buildCommon2.default.mathsym("K", group.mode)], options);
-                var a = (0, _buildCommon.makeSpan)(["a"], [_buildCommon2.default.mathsym("A", group.mode)], options);
+                var k = (0, _buildCommon.makeSpan)(
+                  ["k"],
+                  [_buildCommon2.default.mathsym("K", group.mode)],
+                  options
+                );
+                var a = (0, _buildCommon.makeSpan)(
+                  ["a"],
+                  [_buildCommon2.default.mathsym("A", group.mode)],
+                  options
+                );
 
                 a.height = (a.height + 0.2) * 0.75;
                 a.depth = (a.height - 0.2) * 0.75;
 
-                var t = (0, _buildCommon.makeSpan)(["t"], [_buildCommon2.default.mathsym("T", group.mode)], options);
-                var e = (0, _buildCommon.makeSpan)(["e"], [_buildCommon2.default.mathsym("E", group.mode)], options);
+                var t = (0, _buildCommon.makeSpan)(
+                  ["t"],
+                  [_buildCommon2.default.mathsym("T", group.mode)],
+                  options
+                );
+                var e = (0, _buildCommon.makeSpan)(
+                  ["e"],
+                  [_buildCommon2.default.mathsym("E", group.mode)],
+                  options
+                );
 
                 e.height = e.height - 0.2155;
                 e.depth = e.depth + 0.2155;
 
-                var x = (0, _buildCommon.makeSpan)(["x"], [_buildCommon2.default.mathsym("X", group.mode)], options);
+                var x = (0, _buildCommon.makeSpan)(
+                  ["x"],
+                  [_buildCommon2.default.mathsym("X", group.mode)],
+                  options
+                );
 
                 return (0, _buildCommon.makeSpan)(["mord", "katex-logo"], [k, a, t, e, x], options);
               };
@@ -5598,10 +5929,17 @@
                 // Calculate the clearance between the body and line
                 var lineClearance = theta + phi / 4;
 
-                var minDelimiterHeight = (inner.height + inner.depth + lineClearance + theta) * options.sizeMultiplier;
+                var minDelimiterHeight =
+                  (inner.height + inner.depth + lineClearance + theta) * options.sizeMultiplier;
 
                 // Create a sqrt SVG of the required minimum size
-                var img = _delimiter2.default.customSizedDelim("\\surd", minDelimiterHeight, false, options, group.mode);
+                var img = _delimiter2.default.customSizedDelim(
+                  "\\surd",
+                  minDelimiterHeight,
+                  false,
+                  options,
+                  group.mode
+                );
 
                 // Calculate the actual line width.
                 // This actually should depend on the chosen font -- e.g. \boldmath
@@ -5662,12 +6000,21 @@
                   var toShift = 0.6 * (body.height - body.depth);
 
                   // Build a VList with the superscript shifted up correctly
-                  var rootVList = _buildCommon2.default.makeVList([{ type: "elem", elem: rootm }], "shift", -toShift, options);
+                  var rootVList = _buildCommon2.default.makeVList(
+                    [{ type: "elem", elem: rootm }],
+                    "shift",
+                    -toShift,
+                    options
+                  );
                   // Add a class surrounding it so we can add on the appropriate
                   // kerning
                   var rootVListWrap = (0, _buildCommon.makeSpan)(["root"], [rootVList]);
 
-                  return (0, _buildCommon.makeSpan)(["mord", "sqrt"], [rootVListWrap, body], options);
+                  return (0, _buildCommon.makeSpan)(
+                    ["mord", "sqrt"],
+                    [rootVListWrap, body],
+                    options
+                  );
                 }
               };
 
@@ -5680,7 +6027,10 @@
                 for (var i = 0; i < inner.length; i++) {
                   var pos = _utils2.default.indexOf(inner[i].classes, "sizing");
                   if (pos < 0) {
-                    Array.prototype.push.apply(inner[i].classes, options.sizingClasses(baseOptions));
+                    Array.prototype.push.apply(
+                      inner[i].classes,
+                      options.sizingClasses(baseOptions)
+                    );
                   } else if (inner[i].classes[pos + 1] === "reset-size" + options.size) {
                     // This is a nested size change: e.g., inner[i] is the "b" in
                     // `\Huge a \small b`. Override the old size (the `reset-` class)
@@ -5734,7 +6084,13 @@
                 }
 
                 // Use delimiter.sizedDelim to generate the delimiter.
-                return _delimiter2.default.sizedDelim(delim, group.value.size, options, group.mode, [group.value.mclass]);
+                return _delimiter2.default.sizedDelim(
+                  delim,
+                  group.value.size,
+                  options,
+                  group.mode,
+                  [group.value.mclass]
+                );
               };
 
               groupTypes.leftright = function (group, options) {
@@ -5768,7 +6124,14 @@
                 } else {
                   // Otherwise, use leftRightDelim to generate the correct sized
                   // delimiter.
-                  leftDelim = _delimiter2.default.leftRightDelim(group.value.left, innerHeight, innerDepth, options, group.mode, ["mopen"]);
+                  leftDelim = _delimiter2.default.leftRightDelim(
+                    group.value.left,
+                    innerHeight,
+                    innerDepth,
+                    options,
+                    group.mode,
+                    ["mopen"]
+                  );
                 }
                 // Add it to the beginning of the expression
                 inner.unshift(leftDelim);
@@ -5801,7 +6164,14 @@
                 if (group.value.right === ".") {
                   rightDelim = makeNullDelimiter(options, ["mclose"]);
                 } else {
-                  rightDelim = _delimiter2.default.leftRightDelim(group.value.right, innerHeight, innerDepth, options, group.mode, ["mclose"]);
+                  rightDelim = _delimiter2.default.leftRightDelim(
+                    group.value.right,
+                    innerHeight,
+                    innerDepth,
+                    options,
+                    group.mode,
+                    ["mclose"]
+                  );
                 }
                 // Add it to the end of the expression.
                 inner.push(rightDelim);
@@ -5814,7 +6184,13 @@
                 if (group.value.value === ".") {
                   middleDelim = makeNullDelimiter(options, []);
                 } else {
-                  middleDelim = _delimiter2.default.sizedDelim(group.value.value, 1, options, group.mode, []);
+                  middleDelim = _delimiter2.default.sizedDelim(
+                    group.value.value,
+                    1,
+                    options,
+                    group.mode,
+                    []
+                  );
                   middleDelim.isMiddle = {
                     value: group.value.value,
                     options: options,
@@ -5925,7 +6301,12 @@
                 // Build the accent
                 var accentBody = void 0;
                 if (!group.value.isStretchy) {
-                  var accent = _buildCommon2.default.makeSymbol(group.value.label, "Main-Regular", group.mode, options);
+                  var accent = _buildCommon2.default.makeSymbol(
+                    group.value.label,
+                    "Main-Regular",
+                    group.mode,
+                    options
+                  );
                   // Remove the italic correction of the accent, because it only serves to
                   // shift the accent over to a place we don't want.
                   accent.italic = 0;
@@ -5944,7 +6325,10 @@
                   }
 
                   accentBody = (0, _buildCommon.makeSpan)([], [accent]);
-                  accentBody = (0, _buildCommon.makeSpan)(["accent-body", accentClass], [accentBody]);
+                  accentBody = (0, _buildCommon.makeSpan)(
+                    ["accent-body", accentClass],
+                    [accentBody]
+                  );
 
                   // Shift the accent over by the skew. Note we shift by twice the skew
                   // because we are centering the accent, so by adding 2*skew to the left,
@@ -5992,7 +6376,11 @@
                   }
                 }
 
-                var accentWrap = (0, _buildCommon.makeSpan)(["mord", "accent"], [accentBody], options);
+                var accentWrap = (0, _buildCommon.makeSpan)(
+                  ["mord", "accent"],
+                  [accentBody],
+                  options
+                );
 
                 if (supsubGroup) {
                   // Here, we replace the "base" child of the supsub with our newly
@@ -6033,7 +6421,10 @@
                 }
 
                 // Build the base group
-                var body = buildGroup(group.value.base, options.havingBaseStyle(_Style2.default.DISPLAY));
+                var body = buildGroup(
+                  group.value.base,
+                  options.havingBaseStyle(_Style2.default.DISPLAY)
+                );
 
                 // Create the stretchy element
                 var braceBody = _stretchy2.default.svgSpan(group, options);
@@ -6076,7 +6467,11 @@
                   //   ┏━━━━━━━━┓   or    ┏━━━┓     not    ┏━━━━━━━━━┓
                   //    equation           eqn                 eqn
 
-                  var vSpan = (0, _buildCommon.makeSpan)(["mord", group.value.isOver ? "mover" : "munder"], [vlist], options);
+                  var vSpan = (0, _buildCommon.makeSpan)(
+                    ["mord", group.value.isOver ? "mover" : "munder"],
+                    [vlist],
+                    options
+                  );
 
                   if (group.value.isOver) {
                     vlist = _buildCommon2.default.makeVList(
@@ -6109,7 +6504,11 @@
                   }
                 }
 
-                return (0, _buildCommon.makeSpan)(["mord", group.value.isOver ? "mover" : "munder"], [vlist], options);
+                return (0, _buildCommon.makeSpan)(
+                  ["mord", group.value.isOver ? "mover" : "munder"],
+                  [vlist],
+                  options
+                );
               };
 
               groupTypes.accentUnder = function (group, options) {
@@ -6217,7 +6616,11 @@
                 // Generate the vlist
                 var vlist = void 0;
                 if (group.value.below) {
-                  var lowerShift = -options.fontMetrics().axisHeight + lowerGroup.height + arrowBody.height + 0.111;
+                  var lowerShift =
+                    -options.fontMetrics().axisHeight +
+                    lowerGroup.height +
+                    arrowBody.height +
+                    0.111;
                   vlist = _buildCommon2.default.makeVList(
                     [
                       {
@@ -6296,7 +6699,11 @@
                   // If the size changed between the parent and the current group, account
                   // for that size difference.
                   if (baseOptions && options.size !== baseOptions.size) {
-                    groupNode = (0, _buildCommon.makeSpan)(options.sizingClasses(baseOptions), [groupNode], options);
+                    groupNode = (0, _buildCommon.makeSpan)(
+                      options.sizingClasses(baseOptions),
+                      [groupNode],
+                      options
+                    );
 
                     var multiplier = options.sizeMultiplier / baseOptions.sizeMultiplier;
 
@@ -6337,7 +6744,10 @@
                 bottomStrut.style.verticalAlign = -body.depth + "em";
 
                 // Wrap the struts and body together
-                var htmlNode = (0, _buildCommon.makeSpan)(["katex-html"], [topStrut, bottomStrut, body]);
+                var htmlNode = (0, _buildCommon.makeSpan)(
+                  ["katex-html"],
+                  [topStrut, bottomStrut, body]
+                );
 
                 htmlNode.setAttribute("aria-hidden", "true");
 
@@ -6458,7 +6868,9 @@
               };
 
               groupTypes.mathord = function (group, options) {
-                var node = new _mathMLTree2.default.MathNode("mi", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mi", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 var variant = getVariant(group, options) || "italic";
                 if (variant !== defaultVariant[node.type]) {
@@ -6492,37 +6904,49 @@
               };
 
               groupTypes.bin = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 return node;
               };
 
               groupTypes.rel = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 return node;
               };
 
               groupTypes.open = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 return node;
               };
 
               groupTypes.close = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 return node;
               };
 
               groupTypes.inner = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 return node;
               };
 
               groupTypes.punct = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value, group.mode)]);
+                var node = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value, group.mode),
+                ]);
 
                 node.setAttribute("separator", "true");
 
@@ -6637,7 +7061,9 @@
                   var withDelims = [];
 
                   if (group.value.leftDelim != null) {
-                    var leftOp = new _mathMLTree2.default.MathNode("mo", [new _mathMLTree2.default.TextNode(group.value.leftDelim)]);
+                    var leftOp = new _mathMLTree2.default.MathNode("mo", [
+                      new _mathMLTree2.default.TextNode(group.value.leftDelim),
+                    ]);
 
                     leftOp.setAttribute("fence", "true");
 
@@ -6647,7 +7073,9 @@
                   withDelims.push(node);
 
                   if (group.value.rightDelim != null) {
-                    var rightOp = new _mathMLTree2.default.MathNode("mo", [new _mathMLTree2.default.TextNode(group.value.rightDelim)]);
+                    var rightOp = new _mathMLTree2.default.MathNode("mo", [
+                      new _mathMLTree2.default.TextNode(group.value.rightDelim),
+                    ]);
 
                     rightOp.setAttribute("fence", "true");
 
@@ -6669,7 +7097,9 @@
                     return new _mathMLTree2.default.MathNode(
                       "mtr",
                       row.map(function (cell) {
-                        return new _mathMLTree2.default.MathNode("mtd", [buildGroup(cell, options)]);
+                        return new _mathMLTree2.default.MathNode("mtd", [
+                          buildGroup(cell, options),
+                        ]);
                       })
                     );
                   })
@@ -6679,9 +7109,14 @@
               groupTypes.sqrt = function (group, options) {
                 var node = void 0;
                 if (group.value.index) {
-                  node = new _mathMLTree2.default.MathNode("mroot", [buildGroup(group.value.body, options), buildGroup(group.value.index, options)]);
+                  node = new _mathMLTree2.default.MathNode("mroot", [
+                    buildGroup(group.value.body, options),
+                    buildGroup(group.value.index, options),
+                  ]);
                 } else {
-                  node = new _mathMLTree2.default.MathNode("msqrt", [buildGroup(group.value.body, options)]);
+                  node = new _mathMLTree2.default.MathNode("msqrt", [
+                    buildGroup(group.value.body, options),
+                  ]);
                 }
 
                 return node;
@@ -6691,7 +7126,9 @@
                 var inner = buildExpression(group.value.body, options);
 
                 if (group.value.left !== ".") {
-                  var leftNode = new _mathMLTree2.default.MathNode("mo", [makeText(group.value.left, group.mode)]);
+                  var leftNode = new _mathMLTree2.default.MathNode("mo", [
+                    makeText(group.value.left, group.mode),
+                  ]);
 
                   leftNode.setAttribute("fence", "true");
 
@@ -6699,7 +7136,9 @@
                 }
 
                 if (group.value.right !== ".") {
-                  var rightNode = new _mathMLTree2.default.MathNode("mo", [makeText(group.value.right, group.mode)]);
+                  var rightNode = new _mathMLTree2.default.MathNode("mo", [
+                    makeText(group.value.right, group.mode),
+                  ]);
 
                   rightNode.setAttribute("fence", "true");
 
@@ -6712,7 +7151,9 @@
               };
 
               groupTypes.middle = function (group, options) {
-                var middleNode = new _mathMLTree2.default.MathNode("mo", [makeText(group.value.middle, group.mode)]);
+                var middleNode = new _mathMLTree2.default.MathNode("mo", [
+                  makeText(group.value.middle, group.mode),
+                ]);
                 middleNode.setAttribute("fence", "true");
                 return middleNode;
               };
@@ -6722,10 +7163,15 @@
                 if (group.value.isStretchy) {
                   accentNode = _stretchy2.default.mathMLnode(group.value.label);
                 } else {
-                  accentNode = new _mathMLTree2.default.MathNode("mo", [makeText(group.value.label, group.mode)]);
+                  accentNode = new _mathMLTree2.default.MathNode("mo", [
+                    makeText(group.value.label, group.mode),
+                  ]);
                 }
 
-                var node = new _mathMLTree2.default.MathNode("mover", [buildGroup(group.value.base, options), accentNode]);
+                var node = new _mathMLTree2.default.MathNode("mover", [
+                  buildGroup(group.value.base, options),
+                  accentNode,
+                ]);
 
                 node.setAttribute("accent", "true");
 
@@ -6735,12 +7181,22 @@
               groupTypes.spacing = function (group) {
                 var node = void 0;
 
-                if (group.value === "\\ " || group.value === "\\space" || group.value === " " || group.value === "~") {
-                  node = new _mathMLTree2.default.MathNode("mtext", [new _mathMLTree2.default.TextNode("\xA0")]);
+                if (
+                  group.value === "\\ " ||
+                  group.value === "\\space" ||
+                  group.value === " " ||
+                  group.value === "~"
+                ) {
+                  node = new _mathMLTree2.default.MathNode("mtext", [
+                    new _mathMLTree2.default.TextNode("\xA0"),
+                  ]);
                 } else {
                   node = new _mathMLTree2.default.MathNode("mspace");
 
-                  node.setAttribute("width", _buildCommon2.default.spacingFunctions[group.value].size);
+                  node.setAttribute(
+                    "width",
+                    _buildCommon2.default.spacingFunctions[group.value].size
+                  );
                 }
 
                 return node;
@@ -6753,16 +7209,23 @@
 
                 if (group.value.symbol) {
                   // This is a symbol. Just add the symbol.
-                  node = new _mathMLTree2.default.MathNode("mo", [makeText(group.value.body, group.mode)]);
+                  node = new _mathMLTree2.default.MathNode("mo", [
+                    makeText(group.value.body, group.mode),
+                  ]);
                 } else if (group.value.value) {
                   // This is an operator with children. Add them.
-                  node = new _mathMLTree2.default.MathNode("mo", buildExpression(group.value.value, options));
+                  node = new _mathMLTree2.default.MathNode(
+                    "mo",
+                    buildExpression(group.value.value, options)
+                  );
                 } else {
                   // This is a text operator. Add all of the characters from the
                   // operator's name.
                   // TODO(emily): Add a space in the middle of some of these
                   // operators, like \limsup.
-                  node = new _mathMLTree2.default.MathNode("mi", [new _mathMLTree2.default.TextNode(group.value.body.slice(1))]);
+                  node = new _mathMLTree2.default.MathNode("mi", [
+                    new _mathMLTree2.default.TextNode(group.value.body.slice(1)),
+                  ]);
                 }
 
                 return node;
@@ -6775,7 +7238,9 @@
                   inner.push(new _mathMLTree2.default.MathNode("mo", [makeText("(", group.mode)]));
                 }
                 if (group.value.modType !== "pod") {
-                  inner.push(new _mathMLTree2.default.MathNode("mo", [makeText("mod", group.mode)]));
+                  inner.push(
+                    new _mathMLTree2.default.MathNode("mo", [makeText("mod", group.mode)])
+                  );
                 }
                 if (group.value.value) {
                   var space = new _mathMLTree2.default.MathNode("mspace");
@@ -6791,7 +7256,9 @@
               };
 
               groupTypes.katex = function (group) {
-                var node = new _mathMLTree2.default.MathNode("mtext", [new _mathMLTree2.default.TextNode("KaTeX")]);
+                var node = new _mathMLTree2.default.MathNode("mtext", [
+                  new _mathMLTree2.default.TextNode("KaTeX"),
+                ]);
 
                 return node;
               };
@@ -6873,20 +7340,30 @@
               };
 
               groupTypes.overline = function (group, options) {
-                var operator = new _mathMLTree2.default.MathNode("mo", [new _mathMLTree2.default.TextNode("\u203E")]);
+                var operator = new _mathMLTree2.default.MathNode("mo", [
+                  new _mathMLTree2.default.TextNode("\u203E"),
+                ]);
                 operator.setAttribute("stretchy", "true");
 
-                var node = new _mathMLTree2.default.MathNode("mover", [buildGroup(group.value.body, options), operator]);
+                var node = new _mathMLTree2.default.MathNode("mover", [
+                  buildGroup(group.value.body, options),
+                  operator,
+                ]);
                 node.setAttribute("accent", "true");
 
                 return node;
               };
 
               groupTypes.underline = function (group, options) {
-                var operator = new _mathMLTree2.default.MathNode("mo", [new _mathMLTree2.default.TextNode("\u203E")]);
+                var operator = new _mathMLTree2.default.MathNode("mo", [
+                  new _mathMLTree2.default.TextNode("\u203E"),
+                ]);
                 operator.setAttribute("stretchy", "true");
 
-                var node = new _mathMLTree2.default.MathNode("munder", [buildGroup(group.value.body, options), operator]);
+                var node = new _mathMLTree2.default.MathNode("munder", [
+                  buildGroup(group.value.body, options),
+                  operator,
+                ]);
                 node.setAttribute("accentunder", "true");
 
                 return node;
@@ -6894,13 +7371,18 @@
 
               groupTypes.accentUnder = function (group, options) {
                 var accentNode = _stretchy2.default.mathMLnode(group.value.label);
-                var node = new _mathMLTree2.default.MathNode("munder", [buildGroup(group.value.body, options), accentNode]);
+                var node = new _mathMLTree2.default.MathNode("munder", [
+                  buildGroup(group.value.body, options),
+                  accentNode,
+                ]);
                 node.setAttribute("accentunder", "true");
                 return node;
               };
 
               groupTypes.enclose = function (group, options) {
-                var node = new _mathMLTree2.default.MathNode("menclose", [buildGroup(group.value.body, options)]);
+                var node = new _mathMLTree2.default.MathNode("menclose", [
+                  buildGroup(group.value.body, options),
+                ]);
                 var notation = "";
                 switch (group.value.label) {
                   case "\\bcancel":
@@ -6936,7 +7418,11 @@
                   var upperNode = buildGroup(group.value.body, options);
                   if (group.value.below) {
                     lowerNode = buildGroup(group.value.below, options);
-                    node = new _mathMLTree2.default.MathNode("munderover", [arrowNode, lowerNode, upperNode]);
+                    node = new _mathMLTree2.default.MathNode("munderover", [
+                      arrowNode,
+                      lowerNode,
+                      upperNode,
+                    ]);
                   } else {
                     node = new _mathMLTree2.default.MathNode("mover", [arrowNode, upperNode]);
                   }
@@ -6965,7 +7451,9 @@
               };
 
               groupTypes.llap = function (group, options) {
-                var node = new _mathMLTree2.default.MathNode("mpadded", [buildGroup(group.value.body, options)]);
+                var node = new _mathMLTree2.default.MathNode("mpadded", [
+                  buildGroup(group.value.body, options),
+                ]);
 
                 node.setAttribute("lspace", "-1width");
                 node.setAttribute("width", "0px");
@@ -6974,7 +7462,9 @@
               };
 
               groupTypes.rlap = function (group, options) {
-                var node = new _mathMLTree2.default.MathNode("mpadded", [buildGroup(group.value.body, options)]);
+                var node = new _mathMLTree2.default.MathNode("mpadded", [
+                  buildGroup(group.value.body, options),
+                ]);
 
                 node.setAttribute("width", "0px");
 
@@ -7014,7 +7504,8 @@
                */
               // TODO(kevinb): determine if removeUnnecessaryRow should always be true
               var buildGroup = function buildGroup(group, options) {
-                var removeUnnecessaryRow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+                var removeUnnecessaryRow =
+                  arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
                 if (!group) {
                   return new _mathMLTree2.default.MathNode("mrow");
@@ -7050,11 +7541,16 @@
                 var wrapper = new _mathMLTree2.default.MathNode("mrow", expression);
 
                 // Build a TeX annotation of the source
-                var annotation = new _mathMLTree2.default.MathNode("annotation", [new _mathMLTree2.default.TextNode(texExpression)]);
+                var annotation = new _mathMLTree2.default.MathNode("annotation", [
+                  new _mathMLTree2.default.TextNode(texExpression),
+                ]);
 
                 annotation.setAttribute("encoding", "application/x-tex");
 
-                var semantics = new _mathMLTree2.default.MathNode("semantics", [wrapper, annotation]);
+                var semantics = new _mathMLTree2.default.MathNode("semantics", [
+                  wrapper,
+                  annotation,
+                ]);
 
                 var math = new _mathMLTree2.default.MathNode("math", [semantics]);
 
@@ -7199,7 +7695,10 @@
 
               var getMetrics = function getMetrics(symbol, font) {
                 if (_symbols2.default.math[symbol] && _symbols2.default.math[symbol].replace) {
-                  return _fontMetrics2.default.getCharacterMetrics(_symbols2.default.math[symbol].replace, font);
+                  return _fontMetrics2.default.getCharacterMetrics(
+                    _symbols2.default.math[symbol].replace,
+                    font
+                  );
                 } else {
                   return _fontMetrics2.default.getCharacterMetrics(symbol, font);
                 }
@@ -7212,7 +7711,11 @@
               var styleWrap = function styleWrap(delim, toStyle, options, classes) {
                 var newOptions = options.havingBaseStyle(toStyle);
 
-                var span = (0, _buildCommon.makeSpan)((classes || []).concat(newOptions.sizingClasses(options)), [delim], options);
+                var span = (0, _buildCommon.makeSpan)(
+                  (classes || []).concat(newOptions.sizingClasses(options)),
+                  [delim],
+                  options
+                );
 
                 span.delimSizeMultiplier = newOptions.sizeMultiplier / options.sizeMultiplier;
                 span.height *= span.delimSizeMultiplier;
@@ -7224,7 +7727,9 @@
 
               var centerSpan = function centerSpan(span, options, style) {
                 var newOptions = options.havingBaseStyle(style);
-                var shift = (1 - options.sizeMultiplier / newOptions.sizeMultiplier) * options.fontMetrics().axisHeight;
+                var shift =
+                  (1 - options.sizeMultiplier / newOptions.sizeMultiplier) *
+                  options.fontMetrics().axisHeight;
 
                 span.classes.push("delimcenter");
                 span.style.top = shift + "em";
@@ -7237,7 +7742,14 @@
                * font, but is restyled to either be in textstyle, scriptstyle, or
                * scriptscriptstyle.
                */
-              var makeSmallDelim = function makeSmallDelim(delim, style, center, options, mode, classes) {
+              var makeSmallDelim = function makeSmallDelim(
+                delim,
+                style,
+                center,
+                options,
+                mode,
+                classes
+              ) {
                 var text = _buildCommon2.default.makeSymbol(delim, "Main-Regular", mode, options);
                 var span = styleWrap(text, style, options, classes);
                 if (center) {
@@ -7250,14 +7762,26 @@
                * Builds a symbol in the given font size (note size is an integer)
                */
               var mathrmSize = function mathrmSize(value, size, mode, options) {
-                return _buildCommon2.default.makeSymbol(value, "Size" + size + "-Regular", mode, options);
+                return _buildCommon2.default.makeSymbol(
+                  value,
+                  "Size" + size + "-Regular",
+                  mode,
+                  options
+                );
               };
 
               /**
                * Makes a large delimiter. This is a delimiter that comes in the Size1, Size2,
                * Size3, or Size4 fonts. It is always rendered in textstyle.
                */
-              var makeLargeDelim = function makeLargeDelim(delim, size, center, options, mode, classes) {
+              var makeLargeDelim = function makeLargeDelim(
+                delim,
+                size,
+                center,
+                options,
+                mode,
+                classes
+              ) {
                 var inner = mathrmSize(delim, size, mode, options);
                 var span = styleWrap(
                   (0, _buildCommon.makeSpan)(["delimsizing", "size" + size], [inner], options),
@@ -7286,7 +7810,12 @@
 
                 var inner = (0, _buildCommon.makeSpan)(
                   ["delimsizinginner", sizeClass],
-                  [(0, _buildCommon.makeSpan)([], [_buildCommon2.default.makeSymbol(symbol, font, mode)])]
+                  [
+                    (0, _buildCommon.makeSpan)(
+                      [],
+                      [_buildCommon2.default.makeSymbol(symbol, font, mode)]
+                    ),
+                  ]
                 );
 
                 // Since this will be passed into `makeVList` in the end, wrap the element
@@ -7298,7 +7827,14 @@
                * Make a stacked delimiter out of a given delimiter, with the total height at
                * least `heightTotal`. This routine is mentioned on page 442 of the TeXbook.
                */
-              var makeStackedDelim = function makeStackedDelim(delim, heightTotal, center, options, mode, classes) {
+              var makeStackedDelim = function makeStackedDelim(
+                delim,
+                heightTotal,
+                center,
+                options,
+                mode,
+                classes
+              ) {
                 // There are four parts, the top, an optional middle, a repeated part, and a
                 // bottom.
                 var top = void 0;
@@ -7419,7 +7955,9 @@
                 var minHeight = topHeightTotal + bottomHeightTotal + middleHeightTotal;
 
                 // Compute the number of copies of the repeat symbol we will need
-                var repeatCount = Math.ceil((heightTotal - minHeight) / (middleFactor * repeatHeightTotal));
+                var repeatCount = Math.ceil(
+                  (heightTotal - minHeight) / (middleFactor * repeatHeightTotal)
+                );
 
                 // Compute the total height of the delimiter including all the symbols
                 var realHeightTotal = minHeight + repeatCount * middleFactor * repeatHeightTotal;
@@ -7467,7 +8005,12 @@
                 var newOptions = options.havingBaseStyle(_Style2.default.TEXT);
                 var inner = _buildCommon2.default.makeVList(inners, "bottom", depth, newOptions);
 
-                return styleWrap((0, _buildCommon.makeSpan)(["delimsizing", "mult"], [inner], newOptions), _Style2.default.TEXT, options, classes);
+                return styleWrap(
+                  (0, _buildCommon.makeSpan)(["delimsizing", "mult"], [inner], newOptions),
+                  _Style2.default.TEXT,
+                  options,
+                  classes
+                );
               };
 
               var sqrtInnerSVG = {
@@ -7505,7 +8048,12 @@
                   span.surdWidth = 0.833 * sizeMultiplier; // from the font.
                   //In the font, the glyph is 1000 units tall. The font scale is 1:1000.
 
-                  span.innerHTML = "<svg width='100%' height='" + span.height + "em'>\n            " + sqrtInnerSVG["main"] + "</svg>";
+                  span.innerHTML =
+                    "<svg width='100%' height='" +
+                    span.height +
+                    "em'>\n            " +
+                    sqrtInnerSVG["main"] +
+                    "</svg>";
                 } else if (delim.type === "large") {
                   // These SVGs come from fonts: KaTeX_Size1, _Size2, etc.
                   // Get sqrt height from font data
@@ -7513,7 +8061,12 @@
                   span.style.height = span.height + "em";
                   span.surdWidth = 1.0 / sizeMultiplier; // from the font
 
-                  span.innerHTML = '<svg width="100%" height="' + span.height + 'em">\n            ' + sqrtInnerSVG[delim.size] + "</svg>";
+                  span.innerHTML =
+                    '<svg width="100%" height="' +
+                    span.height +
+                    'em">\n            ' +
+                    sqrtInnerSVG[delim.size] +
+                    "</svg>";
                 } else {
                   // Tall sqrt. In TeX, this would be stacked using multiple glyphs.
                   // We'll use a single SVG to accomplish the same thing.
@@ -7586,7 +8139,16 @@
               ];
 
               // and delimiters that never stack
-              var stackNeverDelimiters = ["<", ">", "\\langle", "\\rangle", "/", "\\backslash", "\\lt", "\\gt"];
+              var stackNeverDelimiters = [
+                "<",
+                ">",
+                "\\langle",
+                "\\rangle",
+                "/",
+                "\\backslash",
+                "\\lt",
+                "\\gt",
+              ];
 
               // Metrics of the different sizes. Found by looking at TeX's output of
               // $\bigl| // \Bigl| \biggl| \Biggl| \showlists$
@@ -7605,10 +8167,20 @@
                 }
 
                 // Sized delimiters are never centered.
-                if (_utils2.default.contains(stackLargeDelimiters, delim) || _utils2.default.contains(stackNeverDelimiters, delim)) {
+                if (
+                  _utils2.default.contains(stackLargeDelimiters, delim) ||
+                  _utils2.default.contains(stackNeverDelimiters, delim)
+                ) {
                   return makeLargeDelim(delim, size, false, options, mode, classes);
                 } else if (_utils2.default.contains(stackAlwaysDelimiters, delim)) {
-                  return makeStackedDelim(delim, sizeToMaxHeight[size], false, options, mode, classes);
+                  return makeStackedDelim(
+                    delim,
+                    sizeToMaxHeight[size],
+                    false,
+                    options,
+                    mode,
+                    classes
+                  );
                 } else {
                   throw new _ParseError2.default("Illegal delimiter: '" + delim + "'");
                 }
@@ -7730,7 +8302,14 @@
                * Make a delimiter of a given height+depth, with optional centering. Here, we
                * traverse the sequences, and create a delimiter that the sequence tells us to.
                */
-              var makeCustomSizedDelim = function makeCustomSizedDelim(delim, height, center, options, mode, classes) {
+              var makeCustomSizedDelim = function makeCustomSizedDelim(
+                delim,
+                height,
+                center,
+                options,
+                mode,
+                classes
+              ) {
                 if (delim === "<" || delim === "\\lt") {
                   delim = "\\langle";
                 } else if (delim === ">" || delim === "\\gt") {
@@ -7771,7 +8350,14 @@
                * Make a delimiter for use with `\left` and `\right`, given a height and depth
                * of an expression that the delimiters surround.
                */
-              var makeLeftRightDelim = function makeLeftRightDelim(delim, height, depth, options, mode, classes) {
+              var makeLeftRightDelim = function makeLeftRightDelim(
+                delim,
+                height,
+                depth,
+                options,
+                mode,
+                classes
+              ) {
                 // We always center \left/\right delimiters, so the axis is always shifted
                 var axisHeight = options.fontMetrics().axisHeight * options.sizeMultiplier;
 
@@ -7967,7 +8553,8 @@
                       // Add the styles, after hyphenation
                       for (var style in this.style) {
                         if (this.style.hasOwnProperty(style)) {
-                          styles += _utils2.default.hyphenate(style) + ":" + this.style[style] + ";";
+                          styles +=
+                            _utils2.default.hyphenate(style) + ":" + this.style[style] + ";";
                         }
                       }
 
@@ -8124,12 +8711,18 @@
                         return false;
                       }
                       for (var style in this.style) {
-                        if (this.style.hasOwnProperty(style) && this.style[style] !== sibling.style[style]) {
+                        if (
+                          this.style.hasOwnProperty(style) &&
+                          this.style[style] !== sibling.style[style]
+                        ) {
                           return false;
                         }
                       }
                       for (var _style in sibling.style) {
-                        if (sibling.style.hasOwnProperty(_style) && this.style[_style] !== sibling.style[_style]) {
+                        if (
+                          sibling.style.hasOwnProperty(_style) &&
+                          this.style[_style] !== sibling.style[_style]
+                        ) {
                           return false;
                         }
                       }
@@ -8203,7 +8796,8 @@
                       }
                       for (var style in this.style) {
                         if (this.style.hasOwnProperty(style)) {
-                          styles += _utils2.default.hyphenate(style) + ":" + this.style[style] + ";";
+                          styles +=
+                            _utils2.default.hyphenate(style) + ":" + this.style[style] + ";";
                         }
                       }
 
@@ -8391,33 +8985,37 @@
 
               // The matrix environments of amsmath builds on the array environment
               // of LaTeX, which is discussed above.
-              defineEnvironment(["matrix", "pmatrix", "bmatrix", "Bmatrix", "vmatrix", "Vmatrix"], {}, function (context) {
-                var delimiters = {
-                  matrix: null,
-                  pmatrix: ["(", ")"],
-                  bmatrix: ["[", "]"],
-                  Bmatrix: ["\\{", "\\}"],
-                  vmatrix: ["|", "|"],
-                  Vmatrix: ["\\Vert", "\\Vert"],
-                }[context.envName];
-                var res = {
-                  type: "array",
-                  hskipBeforeAndAfter: false,
-                };
-                res = parseArray(context.parser, res, dCellStyle(context.envName));
-                if (delimiters) {
-                  res = new _ParseNode2.default(
-                    "leftright",
-                    {
-                      body: [res],
-                      left: delimiters[0],
-                      right: delimiters[1],
-                    },
-                    context.mode
-                  );
+              defineEnvironment(
+                ["matrix", "pmatrix", "bmatrix", "Bmatrix", "vmatrix", "Vmatrix"],
+                {},
+                function (context) {
+                  var delimiters = {
+                    matrix: null,
+                    pmatrix: ["(", ")"],
+                    bmatrix: ["[", "]"],
+                    Bmatrix: ["\\{", "\\}"],
+                    vmatrix: ["|", "|"],
+                    Vmatrix: ["\\Vert", "\\Vert"],
+                  }[context.envName];
+                  var res = {
+                    type: "array",
+                    hskipBeforeAndAfter: false,
+                  };
+                  res = parseArray(context.parser, res, dCellStyle(context.envName));
+                  if (delimiters) {
+                    res = new _ParseNode2.default(
+                      "leftright",
+                      {
+                        body: [res],
+                        left: delimiters[0],
+                        right: delimiters[1],
+                      },
+                      context.mode
+                    );
+                  }
+                  return res;
                 }
-                return res;
-              });
+              );
 
               // A cases environment (in amsmath.sty) is almost equivalent to
               // \def\arraystretch{1.2}%
@@ -10736,7 +11334,15 @@
               };
 
               defineFunction(
-                ["\\text", "\\textrm", "\\textsf", "\\texttt", "\\textnormal", "\\textbf", "\\textit"],
+                [
+                  "\\text",
+                  "\\textrm",
+                  "\\textsf",
+                  "\\texttt",
+                  "\\textnormal",
+                  "\\textbf",
+                  "\\textit",
+                ],
                 {
                   numArgs: 1,
                   argTypes: ["text"],
@@ -10881,7 +11487,15 @@
 
               // Math class commands except \mathop
               defineFunction(
-                ["\\mathord", "\\mathbin", "\\mathrel", "\\mathopen", "\\mathclose", "\\mathpunct", "\\mathinner"],
+                [
+                  "\\mathord",
+                  "\\mathbin",
+                  "\\mathrel",
+                  "\\mathopen",
+                  "\\mathclose",
+                  "\\mathpunct",
+                  "\\mathinner",
+                ],
                 {
                   numArgs: 1,
                 },
@@ -11165,7 +11779,18 @@
 
               // Limits, not symbols
               defineFunction(
-                ["\\det", "\\gcd", "\\inf", "\\lim", "\\liminf", "\\limsup", "\\max", "\\min", "\\Pr", "\\sup"],
+                [
+                  "\\det",
+                  "\\gcd",
+                  "\\inf",
+                  "\\lim",
+                  "\\liminf",
+                  "\\limsup",
+                  "\\max",
+                  "\\min",
+                  "\\Pr",
+                  "\\sup",
+                ],
                 {
                   numArgs: 0,
                 },
@@ -11322,7 +11947,10 @@
                 if (_utils2.default.contains(delimiters, delim.value)) {
                   return delim;
                 } else {
-                  throw new _ParseError2.default("Invalid delimiter: '" + delim.value + "' after '" + context.funcName + "'", delim);
+                  throw new _ParseError2.default(
+                    "Invalid delimiter: '" + delim.value + "' after '" + context.funcName + "'",
+                    delim
+                  );
                 }
               };
 
@@ -11397,14 +12025,29 @@
 
               // Sizing functions (handled in Parser.js explicitly, hence no handler)
               defineFunction(
-                ["\\tiny", "\\scriptsize", "\\footnotesize", "\\small", "\\normalsize", "\\large", "\\Large", "\\LARGE", "\\huge", "\\Huge"],
+                [
+                  "\\tiny",
+                  "\\scriptsize",
+                  "\\footnotesize",
+                  "\\small",
+                  "\\normalsize",
+                  "\\large",
+                  "\\Large",
+                  "\\LARGE",
+                  "\\huge",
+                  "\\Huge",
+                ],
                 0,
                 null
               );
 
               // Style changing functions (handled in Parser.js explicitly, hence no
               // handler)
-              defineFunction(["\\displaystyle", "\\textstyle", "\\scriptstyle", "\\scriptscriptstyle"], 0, null);
+              defineFunction(
+                ["\\displaystyle", "\\textstyle", "\\scriptstyle", "\\scriptscriptstyle"],
+                0,
+                null
+              );
 
               // Old font changing functions
               defineFunction(["\\rm", "\\sf", "\\tt", "\\bf", "\\it"], 0, null);
@@ -11478,11 +12121,24 @@
                   var base = args[0];
 
                   var isStretchy = !_utils2.default.contains(
-                    ["\\acute", "\\grave", "\\ddot", "\\tilde", "\\bar", "\\breve", "\\check", "\\hat", "\\vec", "\\dot"],
+                    [
+                      "\\acute",
+                      "\\grave",
+                      "\\ddot",
+                      "\\tilde",
+                      "\\bar",
+                      "\\breve",
+                      "\\check",
+                      "\\hat",
+                      "\\vec",
+                      "\\dot",
+                    ],
                     context.funcName
                   );
 
-                  var isShifty = !isStretchy || _utils2.default.contains(["\\widehat", "\\widetilde"], context.funcName);
+                  var isShifty =
+                    !isStretchy ||
+                    _utils2.default.contains(["\\widehat", "\\widetilde"], context.funcName);
 
                   return {
                     type: "accent",
@@ -11536,7 +12192,14 @@
 
               // Stretchy accents under the body
               defineFunction(
-                ["\\underleftarrow", "\\underrightarrow", "\\underleftrightarrow", "\\undergroup", "\\underlinesegment", "\\undertilde"],
+                [
+                  "\\underleftarrow",
+                  "\\underrightarrow",
+                  "\\underleftrightarrow",
+                  "\\undergroup",
+                  "\\underlinesegment",
+                  "\\undertilde",
+                ],
                 {
                   numArgs: 1,
                 },
@@ -11839,7 +12502,10 @@
                   {
                     key: "toNode",
                     value: function toNode() {
-                      var node = document.createElementNS("http://www.w3.org/1998/Math/MathML", this.type);
+                      var node = document.createElementNS(
+                        "http://www.w3.org/1998/Math/MathML",
+                        this.type
+                      );
 
                       for (var attr in this.attributes) {
                         if (Object.prototype.hasOwnProperty.call(this.attributes, attr)) {
@@ -12021,7 +12687,9 @@
               };
 
               var mathMLnode = function mathMLnode(label) {
-                var node = new mathMLTree.MathNode("mo", [new mathMLTree.TextNode(stretchyCodePoint[label.substr(1)])]);
+                var node = new mathMLTree.MathNode("mo", [
+                  new mathMLTree.TextNode(stretchyCodePoint[label.substr(1)]),
+                ]);
                 node.setAttribute("stretchy", "true");
                 return node;
               };
@@ -12134,7 +12802,10 @@
                 cancel: "<line x1='0' y1='100%' x2='100%' y2='0' stroke-width='0.046em'/>",
 
                 // The doubleleftarrow geometry is from glyph U+21D0 in the font KaTeX Main
-                doubleleftarrow: "><svg viewBox='0 0 400000 549'\npreserveAspectRatio='xMinYMin slice'>" + svgPath["doubleleftarrow"] + "</svg>",
+                doubleleftarrow:
+                  "><svg viewBox='0 0 400000 549'\npreserveAspectRatio='xMinYMin slice'>" +
+                  svgPath["doubleleftarrow"] +
+                  "</svg>",
 
                 // doubleleftrightarrow is from glyph U+21D4 in font KaTeX Main
                 doubleleftrightarrow:
@@ -12145,7 +12816,10 @@
                   "</svg>",
 
                 // doublerightarrow is from glyph U+21D2 in font KaTeX Main
-                doublerightarrow: "><svg viewBox='0 0 400000 549'\npreserveAspectRatio='xMaxYMin slice'>" + svgPath["doublerightarrow"] + "</svg>",
+                doublerightarrow:
+                  "><svg viewBox='0 0 400000 549'\npreserveAspectRatio='xMaxYMin slice'>" +
+                  svgPath["doublerightarrow"] +
+                  "</svg>",
 
                 // hookleftarrow is from glyph U+21A9 in font KaTeX Main
                 hookleftarrow:
@@ -12160,7 +12834,10 @@
                   "</svg>",
 
                 // leftarrow is from glyph U+2190 in font KaTeX Main
-                leftarrow: "><svg viewBox='0 0 400000 522' preserveAspectRatio='xMinYMin\n slice'>" + svgPath["leftarrow"] + "</svg>",
+                leftarrow:
+                  "><svg viewBox='0 0 400000 522' preserveAspectRatio='xMinYMin\n slice'>" +
+                  svgPath["leftarrow"] +
+                  "</svg>",
 
                 // leftharpoon is from glyph U+21BD in font KaTeX Main
                 leftharpoon:
@@ -12185,7 +12862,8 @@
                 linesegment:
                   "><svg width='50.1%' viewBox='0 0 400000 414'\npreserveAspectRatio='xMinYMin slice'><path d='M40 187V40H0\nv334h40V227h399960v-40zm0 0V40H0v334h40V227h399960v-40z'/></svg><svg x='50%'\nwidth='50%' viewBox='0 0 400000 414' preserveAspectRatio='xMaxYMin slice'>\n<path d='M0 187v40h399960v147h40V40h-40v147zm0\n 0v40h399960v147h40V40h-40v147z'/></svg>",
 
-                longequal: " viewBox='0 0 100 334' preserveAspectRatio='none'>\n<path d='M0 50h100v40H0zm0 194h100v40H0z'/>",
+                longequal:
+                  " viewBox='0 0 100 334' preserveAspectRatio='none'>\n<path d='M0 50h100v40H0zm0 194h100v40H0z'/>",
 
                 // mapsto is from glyph U+21A6 in font KaTeX Main
                 mapsto:
@@ -12202,7 +12880,10 @@
                   "><svg width='50.1%' viewBox='0 0 400000 342'\npreserveAspectRatio='xMinYMin slice'><path d='M400000 80\nH435C64 80 168.3 229.4 21 260c-5.9 1.2-18 0-18 0-2 0-3-1-3-3v-38C76 61 257 0\n 435 0h399565z'/></svg><svg x='50%' width='50%' viewBox='0 0 400000 342'\npreserveAspectRatio='xMaxYMin slice'><path d='M0 80h399565\nc371 0 266.7 149.4 414 180 5.9 1.2 18 0 18 0 2 0 3-1 3-3v-38\nc-76-158-257-219-435-219H0z'/></svg>",
 
                 // rightarrow is from glyph U+2192 in font KaTeX Main
-                rightarrow: "><svg viewBox='0 0 400000 522' preserveAspectRatio='xMaxYMin\n slice'>" + svgPath["rightarrow"] + "</svg>",
+                rightarrow:
+                  "><svg viewBox='0 0 400000 522' preserveAspectRatio='xMaxYMin\n slice'>" +
+                  svgPath["rightarrow"] +
+                  "</svg>",
 
                 // rightharpoon is from glyph U+21C0 in font KaTeX Main
                 rightharpoon:
@@ -12310,7 +12991,12 @@
                   span.style.minWidth = minWidth + "em";
                 }
 
-                span.innerHTML = "<svg width='100%' height='" + totalHeight + "em'" + innerSVG[imageName] + "</svg>";
+                span.innerHTML =
+                  "<svg width='100%' height='" +
+                  totalHeight +
+                  "em'" +
+                  innerSVG[imageName] +
+                  "</svg>";
 
                 return span;
               };
@@ -12327,7 +13013,12 @@
                   }
                 } else {
                   img = buildCommon.makeSpan([], [], options);
-                  img.innerHTML = "<svg width='100%' height='" + totalHeight + "em'>" + innerSVG[label] + "</svg>";
+                  img.innerHTML =
+                    "<svg width='100%' height='" +
+                    totalHeight +
+                    "em'>" +
+                    innerSVG[label] +
+                    "</svg>";
                 }
 
                 img.height = totalHeight;
@@ -13464,7 +14155,10 @@
           if (!(e instanceof katex.ParseError)) {
             throw e;
           }
-          optionsCopy.errorCallback("KaTeX auto-render: Failed to parse `" + data[i].data + "` with ", e);
+          optionsCopy.errorCallback(
+            "KaTeX auto-render: Failed to parse `" + data[i].data + "` with ",
+            e
+          );
           fragment.appendChild(document.createTextNode(data[i].rawData));
           continue;
         }
@@ -13488,7 +14182,8 @@
         }
       } else if (childNode.nodeType === 1) {
         // Element node
-        const shouldRender = optionsCopy.ignoredTags.indexOf(childNode.nodeName.toLowerCase()) === -1;
+        const shouldRender =
+          optionsCopy.ignoredTags.indexOf(childNode.nodeName.toLowerCase()) === -1;
 
         if (shouldRender) {
           renderElem(childNode, optionsCopy);
@@ -13561,7 +14256,8 @@
     }
 
     if (needsCSS) {
-      const katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
+      const katexCSSTag =
+        '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
       dom.head.insertAdjacentHTML("beforeend", katexCSSTag);
     }
   }
@@ -13651,7 +14347,8 @@
     let appendHead = (html) => appendHtml(head, html);
 
     function meta(name, content, force) {
-      if (content || force) appendHead(`    <meta name="${name}" content="${escapeHtml_1(content)}" >\n`);
+      if (content || force)
+        appendHead(`    <meta name="${name}" content="${escapeHtml_1(content)}" >\n`);
     }
 
     appendHead(`
@@ -13737,8 +14434,14 @@
       meta("citation_fulltext_world_readable", "", true);
 
       if (data.publishedDate) {
-        meta("citation_online_date", `${data.publishedYear}/${data.publishedMonthPadded}/${data.publishedDayPadded}`);
-        meta("citation_publication_date", `${data.publishedYear}/${data.publishedMonthPadded}/${data.publishedDayPadded}`);
+        meta(
+          "citation_online_date",
+          `${data.publishedYear}/${data.publishedMonthPadded}/${data.publishedDayPadded}`
+        );
+        meta(
+          "citation_publication_date",
+          `${data.publishedYear}/${data.publishedMonthPadded}/${data.publishedDayPadded}`
+        );
       }
 
       (data.authors || []).forEach((a) => {
@@ -13791,7 +14494,8 @@
 
     // Special test for arxiv
     let arxiv_id_search = /https?:\/\/arxiv\.org\/pdf\/([0-9]*\.[0-9]*)\.pdf/.exec(ref.url);
-    arxiv_id_search = arxiv_id_search || /https?:\/\/arxiv\.org\/abs\/([0-9]*\.[0-9]*)/.exec(ref.url);
+    arxiv_id_search =
+      arxiv_id_search || /https?:\/\/arxiv\.org\/abs\/([0-9]*\.[0-9]*)/.exec(ref.url);
     arxiv_id_search = arxiv_id_search || /arXiv preprint arXiv:([0-9]*\.[0-9]*)/.exec(ref.journal);
     if (arxiv_id_search && arxiv_id_search[1]) {
       content += `citation_arxiv_id=${arxiv_id_search[1]};`;
@@ -13948,7 +14652,8 @@
     var parent = node.parentElement;
     var isMath =
       parent && parent.getAttribute && parent.getAttribute("class")
-        ? parent.getAttribute("class").includes("katex") || parent.getAttribute("class").includes("MathJax")
+        ? parent.getAttribute("class").includes("katex") ||
+          parent.getAttribute("class").includes("MathJax")
         : false;
     return (
       parent &&
@@ -14008,7 +14713,10 @@
       .replace(/([a-z])'([a-z])/gi, "$1\u2019$2") // conjunction's possession
       .replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/gi, "$1\u2019$3") // ending '
       .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/gi, "\u2019$2$3") // abbrev. years like '93
-      .replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/gi, "$1\u2019") // backwards apostrophe
+      .replace(
+        /(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/gi,
+        "$1\u2019"
+      ) // backwards apostrophe
       .replace(/'''/g, "\u2034") // triple prime
       .replace(/("|'')/g, "\u2033") // double prime
       .replace(/'/g, "\u2032");
@@ -14075,12 +14783,15 @@ window.addEventListener('WebComponentsReady', function() {
     if (templateTag) {
       templateTag.parentNode.removeChild(templateTag);
     } else {
-      console.debug("FYI: Did not find template tag when trying to remove it. You may not have added it. Be aware that our polyfills will add it.");
+      console.debug(
+        "FYI: Did not find template tag when trying to remove it. You may not have added it. Be aware that our polyfills will add it."
+      );
     }
 
     // add loader
     const loaderTag = dom.createElement("script");
-    loaderTag.src = "https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.17/webcomponents-loader.js";
+    loaderTag.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.17/webcomponents-loader.js";
     dom.head.insertBefore(loaderTag, dom.head.firstChild);
 
     // add loader event listener to add tempalrte back in

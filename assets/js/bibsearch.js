@@ -3,11 +3,16 @@ import { highlightSearchTerm } from "./highlight-search-term.js";
 document.addEventListener("DOMContentLoaded", function () {
   // actual bibsearch logic
   const filterItems = (searchTerm) => {
-    document.querySelectorAll(".bibliography, .unloaded").forEach((element) => element.classList.remove("unloaded"));
+    document
+      .querySelectorAll(".bibliography, .unloaded")
+      .forEach((element) => element.classList.remove("unloaded"));
 
     // highlight-search-term
     if (CSS.highlights) {
-      const nonMatchingElements = highlightSearchTerm({ search: searchTerm, selector: ".bibliography > li" });
+      const nonMatchingElements = highlightSearchTerm({
+        search: searchTerm,
+        selector: ".bibliography > li",
+      });
       if (nonMatchingElements == null) {
         return;
       }

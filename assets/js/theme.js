@@ -70,7 +70,8 @@ let applyTheme = () => {
   // Set jupyter notebooks themes.
   let jupyterNotebooks = document.getElementsByClassName("jupyter-notebook-iframe-container");
   for (let i = 0; i < jupyterNotebooks.length; i++) {
-    let bodyElement = jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentWindow.document.body;
+    let bodyElement =
+      jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentWindow.document.body;
     if (theme == "dark") {
       bodyElement.setAttribute("data-jp-theme-light", "false");
       bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Dark");
@@ -83,7 +84,8 @@ let applyTheme = () => {
   // Updates the background of medium-zoom overlay.
   if (typeof medium_zoom !== "undefined") {
     medium_zoom.update({
-      background: getComputedStyle(document.documentElement).getPropertyValue("--global-bg-color") + "ee", // + 'ee' for trasparency.
+      background:
+        getComputedStyle(document.documentElement).getPropertyValue("--global-bg-color") + "ee", // + 'ee' for trasparency.
     });
   }
 };
@@ -157,7 +159,12 @@ let setDiff2htmlTheme = (theme) => {
     // Get the code block content from previous element, since it is the diff code itself as defined in Markdown, but it is hidden
     let textData = elem.previousSibling.childNodes[0].innerHTML;
     elem.innerHTML = "";
-    const configuration = { colorScheme: theme, drawFileList: true, highlight: true, matching: "lines" };
+    const configuration = {
+      colorScheme: theme,
+      drawFileList: true,
+      highlight: true,
+      matching: "lines",
+    };
     const diff2htmlUi = new Diff2HtmlUI(elem, textData, configuration);
     diff2htmlUi.draw();
   });

@@ -2702,7 +2702,10 @@ span.rendered_html code {
   padding-right: 5px;
 }
 
-#nbextensions-configurator-container > div.nbext-buttons.tree-buttons.no-padding.pull-right > span > button {
+#nbextensions-configurator-container
+  > div.nbext-buttons.tree-buttons.no-padding.pull-right
+  > span
+  > button {
   border: none !important;
 }
 
@@ -3085,7 +3088,16 @@ ul.typeahead-list {
 
 div.input.typeahead-hint,
 input.typeahead-hint,
-body > div.modal.cmd-palette.in > div > div > div > form > div > div.typeahead-field > span.typeahead-query > input.typeahead-hint {
+body
+  > div.modal.cmd-palette.in
+  > div
+  > div
+  > div
+  > form
+  > div
+  > div.typeahead-field
+  > span.typeahead-query
+  > input.typeahead-hint {
   color: #828892 !important;
   background-color: transparent;
   padding: 3px 10px;
@@ -3308,7 +3320,14 @@ div#short-key-bindings-intro.well,
   line-height: 22px;
 }
 
-#notebook-container > div.cell.code_cell.rendered.selected > div.input > div.inner_cell > div.ctb_hideshow.ctb_show > div > div > button,
+#notebook-container
+  > div.cell.code_cell.rendered.selected
+  > div.input
+  > div.inner_cell
+  > div.ctb_hideshow.ctb_show
+  > div
+  > div
+  > button,
 #notebook-container > div.input > div.inner_cell > div.ctb_hideshow.ctb_show > div > div > button {
   font-size: 10pt;
   color: #303030;

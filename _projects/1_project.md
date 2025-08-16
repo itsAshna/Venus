@@ -5,6 +5,7 @@ description: Differentiate between AI-generated and human written text in a docu
 img: assets/img/2.png
 importance: 4
 ---
+
 **GitHub Repository:** [View on GitHub](https://github.com/itsAshna/Detect-text-generated-by-AI)
 
 ---
@@ -21,11 +22,13 @@ My goal was to design, implement, and evaluate methods for reliably detecting AI
 #### Problem
 
 AI text detection is difficult because:
+
 - LLMs mimic human style, coherence, and vocabulary.
 - Newer models constantly evolve, producing text that bypasses older detection methods.
 - Traditional statistical methods often fail to capture subtle differences.
 
 This project set out to build a robust classifier that could:
+
 1. Work across multiple datasets.
 2. Adapt to newer AI models.
 3. Maintain high accuracy on unseen data.
@@ -37,9 +40,10 @@ This project set out to build a robust classifier that could:
 **1. Data**
 
 I combined multiple datasets to train and evaluate the model:
-- **Kaggle competition essays** – 1,000 samples.  
-- **DAIGT train dataset** – 5,000 samples.  
-- **Generated essays** – 500 samples produced using GPT-4, Cohere, etc., with varied prompts and temperatures.  
+
+- **Kaggle competition essays** – 1,000 samples.
+- **DAIGT train dataset** – 5,000 samples.
+- **Generated essays** – 500 samples produced using GPT-4, Cohere, etc., with varied prompts and temperatures.
 - **Hugging Face external dataset** – 15,000 samples for out-of-distribution testing.
 
 ---
@@ -47,15 +51,17 @@ I combined multiple datasets to train and evaluate the model:
 **2. Features**
 
 I engineered multiple types of features to capture both style and structure:
-- **Vocabulary Richness** – ratio of unique words to total words.  
-- **Readability Scores** – SMOG Index, Gunning Fog Index.  
-- **Perplexity** – using GPT-2 to measure text predictability.  
-- **Polarity & Subjectivity** – sentiment-based metrics.  
+
+- **Vocabulary Richness** – ratio of unique words to total words.
+- **Readability Scores** – SMOG Index, Gunning Fog Index.
+- **Perplexity** – using GPT-2 to measure text predictability.
+- **Polarity & Subjectivity** – sentiment-based metrics.
 - **Compression Factors** – redundancy patterns via Lempel-Ziv and Gzip.
 
 After analysis, I found **perplexity**, **SMOG Index**, and **Gunning Fog Index** were the most effective and generalizable.
 
 ---
+
 #### 3. Feature Selection
 
 To reduce redundancy and overfitting, I performed Principal Component Analysis (PCA) and SHAP feature importance analysis.
@@ -65,8 +71,6 @@ To reduce redundancy and overfitting, I performed Principal Component Analysis (
   <img src="{{ '/assets/img/7.png' | relative_url }}" alt="SHAP Feature Importance" width="300">
 </p>
 
-
-
 These confirmed that **perplexity**, **SMOG Index**, and **Gunning Fog Index** were the most influential and distinct features.
 
 ---
@@ -74,9 +78,10 @@ These confirmed that **perplexity**, **SMOG Index**, and **Gunning Fog Index** w
 **3. Models Tested**
 
 I implemented and tuned:
-- **Support Vector Machine (SVM)**  
-- **XGBoost**  
-- **Multi-Layer Perceptron (MLP)**  
+
+- **Support Vector Machine (SVM)**
+- **XGBoost**
+- **Multi-Layer Perceptron (MLP)**
 
 I optimized each with techniques like grid search, Bayesian optimization, and early stopping.
 
@@ -84,29 +89,28 @@ I optimized each with techniques like grid search, Bayesian optimization, and ea
 
 #### Results
 
-| Model | Test Accuracy | AUC-ROC | External Dataset Accuracy | External Dataset AUC-ROC |
-|-------|--------------|---------|---------------------------|---------------------------|
-| **XGBoost** | 89% | 0.95 | 81% | 0.90 |
-| **SVM** | 87% | 0.86 | 89% | 0.89 |
-| **MLP** | 80.7% | 0.85 | **85.5%** | **0.94** |
-
+| Model       | Test Accuracy | AUC-ROC | External Dataset Accuracy | External Dataset AUC-ROC |
+| ----------- | ------------- | ------- | ------------------------- | ------------------------ |
+| **XGBoost** | 89%           | 0.95    | 81%                       | 0.90                     |
+| **SVM**     | 87%           | 0.86    | 89%                       | 0.89                     |
+| **MLP**     | 80.7%         | 0.85    | **85.5%**                 | **0.94**                 |
 
 ---
 
 #### Key Findings:
 
-- Compression features alone performed poorly (~57% accuracy).  
-- Combining linguistic complexity and perplexity features gave the best results.  
-- The MLP with top 3 features (Perplexity, SMOG, Gunning Fog) was both **accurate** and **generalizable**.  
+- Compression features alone performed poorly (~57% accuracy).
+- Combining linguistic complexity and perplexity features gave the best results.
+- The MLP with top 3 features (Perplexity, SMOG, Gunning Fog) was both **accurate** and **generalizable**.
 - The model achieved **99% AUC** on some external tests.
 
 ---
 
 #### What I Solved
 
-- Built a detection system that generalizes to data from completely new sources.  
-- Identified feature sets that stay effective even as AI models improve.  
-- Reduced overfitting by focusing on conceptually distinct features.  
+- Built a detection system that generalizes to data from completely new sources.
+- Identified feature sets that stay effective even as AI models improve.
+- Reduced overfitting by focusing on conceptually distinct features.
 
 ---
 
@@ -119,8 +123,7 @@ This project lays the groundwork for tools that maintain trust in academic, prof
 
 #### Future Improvements
 
-- Integrate transformer-based embeddings (BERT, RoBERTa).  
-- Continuously retrain on outputs from newer LLMs.  
-- Add semantic and discourse-level analysis.  
+- Integrate transformer-based embeddings (BERT, RoBERTa).
+- Continuously retrain on outputs from newer LLMs.
+- Add semantic and discourse-level analysis.
 - Deploy as a real-time detection service.
-

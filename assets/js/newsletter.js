@@ -100,6 +100,8 @@ for (var i = 0; i < formContainers.length; i++) {
   var handlersAdded = formContainer.classList.contains("newsletter-handlers-added");
   if (handlersAdded) continue;
   formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
-  formContainer.querySelector(".newsletter-back-button").addEventListener("click", resetFormHandler);
+  formContainer
+    .querySelector(".newsletter-back-button")
+    .addEventListener("click", resetFormHandler);
   formContainer.classList.add("newsletter-handlers-added");
 }

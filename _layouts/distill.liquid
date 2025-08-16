@@ -96,7 +96,9 @@
         <d-citation-list></d-citation-list>
       </d-appendix>
 
-      <d-bibliography src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}"></d-bibliography>
+      <d-bibliography
+        src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}"
+      ></d-bibliography>
 
       <d-article>
         {% if site.related_blog_posts and site.related_blog_posts.enabled %}
@@ -106,7 +108,9 @@
         {% endif %}
         <br>
         <br>
-        {% if site.disqus_shortname and page.disqus_comments %}{% include disqus.liquid %}{% endif %}
+        {% if site.disqus_shortname and page.disqus_comments -%}
+          {%- include disqus.liquid -%}
+        {%- endif %}
         {% if site.giscus.repo and page.giscus_comments %}
           {% include giscus.liquid %}
         {% endif %}

@@ -50,11 +50,8 @@ h1.about-name {
 
 </style>
 
-
-
 <div class="about-colors" markdown="1">
-I specialize in Machine Learning and AI. My expertise includes developing end-to-end ML and data pipelines, from data cleaning and preparation to training models and deploying them using Docker, Kubernetes, and AWS. My projects have spanned over Natural Language Processing, Generative AI and Retrieval-Augmented Generation systems. I also bring 2 years of software development experience with John Deere where I worked on developing different business features in Python, cloud infrastructure with AWS and also on CI/CD pipelines with GitHub Actions. I'm comfortable working with APIs, writing SQL queries, and using tools like Prometheus, FastAPI, and Kafka. 
-
+I specialize in Machine Learning and AI. My expertise includes developing end-to-end ML and data pipelines, from data cleaning and preparation to training models and deploying them using Docker, Kubernetes, and AWS. My projects have spanned over Natural Language Processing, Generative AI and Retrieval-Augmented Generation systems. I also bring 2 years of software development experience with John Deere where I worked on developing different business features in Python, cloud infrastructure with AWS and also on CI/CD pipelines with GitHub Actions. I'm comfortable working with APIs, writing SQL queries, and using tools like Prometheus, FastAPI, and Kafka.
 
 #### Highlights
 
@@ -66,8 +63,8 @@ I also have two years experience as a **Software Engineer at John Deere** where 
 
 #### Beyond Work
 
-Outside of my professional life, I enjoy activities that keep both my mind and body engaged. 
-I love to read and explore new ideas through books, hit the gym to stay active, and experiment in the kitchen by trying new recipes and baking. 
+Outside of my professional life, I enjoy activities that keep both my mind and body engaged.
+I love to read and explore new ideas through books, hit the gym to stay active, and experiment in the kitchen by trying new recipes and baking.
 These hobbies help me stay creative, focused, and balanced.
 
 </div>

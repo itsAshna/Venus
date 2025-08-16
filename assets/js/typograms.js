@@ -481,7 +481,10 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
   // top-right
-  if ((right == "-" || right == "+") && (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")) {
+  if (
+    (right == "-" || right == "+") &&
+    (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -498,7 +501,10 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
   }
 
   // top-left
-  if ((left == "-" || left == "+") && (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")) {
+  if (
+    (left == "-" || left == "+") &&
+    (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -1263,7 +1269,10 @@ function create(source, zoom, debug) {
   svg.setAttribute("debug", debug);
   const padding = 0;
 
-  svg.setAttribute("viewBox", `${-padding} ${-padding} ${width * 30 + 2 * padding} ${height * 54 + 2 * padding}`);
+  svg.setAttribute(
+    "viewBox",
+    `${-padding} ${-padding} ${width * 30 + 2 * padding} ${height * 54 + 2 * padding}`
+  );
   svg.setAttribute("class", "debug");
   svg.appendChild(render(diagram));
 
