@@ -6,7 +6,7 @@ nav: false
 
 profile:
   align: right
-  image: prof.png
+  image: profile.png
   image_circular: false
   more_info:
 social: true
