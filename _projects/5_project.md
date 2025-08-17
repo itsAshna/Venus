@@ -3,18 +3,18 @@ layout: page
 title: Loan Approval Prediction
 description: A machine learning project that predicts loan approval decisions using applicant data.
 img: assets/img/5.png
-importance: 5
+importance: 6
 ---
 
 **GitHub Repository:** [View on GitHub](https://github.com/itsAshna/Loan-approval-prediction)
 
-#### 📖 Introduction
+#### Introduction
 
 This project focuses on predicting whether a loan application will be approved based on applicant demographic, financial, and credit history data. Loan approval prediction is a critical task for financial institutions, as it helps minimize default risk while ensuring eligible applicants are not overlooked. By leveraging machine learning, the process becomes faster, more consistent, and more data-driven.
 
 ---
 
-#### 🎯 Problem
+#### Problem
 
 Financial institutions must evaluate loan applications efficiently while balancing risk and fairness. The main challenges include:
 
@@ -25,7 +25,7 @@ Financial institutions must evaluate loan applications efficiently while balanci
 
 ---
 
-#### 🛠 Approach
+#### Approach
 
 ##### 1. Data Preprocessing
 
@@ -57,7 +57,7 @@ Trained and evaluated multiple models:
 
 ---
 
-#### 📊 Results
+#### Results
 
 | Model               | Accuracy | Recall (Class 1) | ROC-AUC |
 | ------------------- | -------- | ---------------- | ------- |
@@ -71,7 +71,7 @@ Trained and evaluated multiple models:
 
 ---
 
-#### 🚧 Challenges
+#### Challenges
 
 - Severe **class imbalance** reducing minority class recall.
 - Avoiding overfitting with a relatively small dataset.
@@ -79,7 +79,7 @@ Trained and evaluated multiple models:
 
 ---
 
-#### ✅ What I Solved
+#### What I Solved
 
 - Built a complete preprocessing and modeling pipeline.
 - Improved minority class recall using **SMOTE** and hyperparameter tuning.
@@ -87,13 +87,13 @@ Trained and evaluated multiple models:
 
 ---
 
-#### 📌 Conclusion
+#### Conclusion
 
 The project successfully developed a loan approval prediction model that balances accuracy and fairness. Random Forest emerged as the most reliable choice for production deployment, while XGBoost and Neural Networks offered stronger minority class recall when high-risk detection is prioritized.
 
 ---
 
-#### 🔮 Future Improvements
+#### Future Improvements
 
 - Incorporating behavioral and transactional data for richer insights.
 - Deploying the model as a **web app** for real-time decision support.

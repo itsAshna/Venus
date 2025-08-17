@@ -3,7 +3,7 @@ layout: page
 title: Detect AI-generated text
 description: Differentiate between AI-generated and human written text in a document.
 img: assets/img/2.png
-importance: 4
+importance: 2
 ---
 
 **GitHub Repository:** [View on GitHub](https://github.com/itsAshna/Detect-text-generated-by-AI)
