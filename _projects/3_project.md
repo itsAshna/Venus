@@ -4,7 +4,6 @@ title: Modelling Human Attention
 description: A transformer-based system that predicts the most engaging moments in YouTube videos.
 img: assets/img/4.png
 importance: 4
-
 ---
 
 #### Introduction
