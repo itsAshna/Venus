@@ -16,8 +16,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "nav-",
-          title: "",
+        },{id: "nav-projects",
+          title: "projects",
           description: "",
           section: "Navigation",
           handler: () => {
@@ -106,4 +106,9 @@ ninja.data = [{
           description: "A machine learning project that predicts loan approval decisions using applicant data.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/5_project.html";
+            },},{id: "projects-movie-recommender",
+          title: 'Movie Recommender',
+          description: "A semantic movie recommendation engine using OpenAI and Pinecone.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project.html";
             },},];
